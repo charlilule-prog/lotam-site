@@ -67,14 +67,28 @@ collections:
               - { name: note, label: "שורת המחיר מתחת לכפתור", widget: string }
               - { name: pitch, label: "שורה בולטת", widget: string }
               - { name: pitch_accent, label: "סוף השורה הבולטת, באלמוג", widget: string }
-              - { name: manage_title, label: "כרטיס לנהל: כותרת", widget: string }
-              - { name: manage_text, label: "כרטיס לנהל: טקסט", widget: text }
-              - { name: manage_whatsapp, label: "כרטיס לנהל: שורת הווטסאפ", widget: text }
-              - { name: teach_title, label: "כרטיס ללמד: כותרת", widget: string }
-              - { name: teach_text, label: "כרטיס ללמד: טקסט", widget: text }
+              - { name: manage_title, label: "טלפון ימני: כותרת (לנהל)", widget: string }
+              - { name: manage_caption, label: "טלפון ימני: משפט קצר מתחת", widget: text, hint: "עד כ-60 תווים, כדי שייכנס מתחת לטלפון." }
+              - { name: teach_title, label: "טלפון שמאלי: כותרת (ללמד)", widget: string }
+              - { name: teach_caption, label: "טלפון שמאלי: משפט קצר מתחת", widget: text, hint: "עד כ-75 תווים." }
               - { name: manage_alt, label: "תיאור הצילום של לנהל (Alt)", widget: text }
               - { name: teach_alt, label: "תיאור הצילום של ללמד (Alt)", widget: text }
+              - { name: swipe_hint, label: "רמז החלקה בטלפון", widget: string }
               - { name: demo_tag, label: "כיתוב מתחת לצילומים", widget: string }
+          - name: devices
+            label: "רצועת המכשירים: מחשב, טאבלט וטלפון"
+            widget: object
+            fields:
+              - { name: title, label: "כותרת", widget: string }
+              - { name: title_accent, label: "סוף הכותרת, בטורקיז", widget: string }
+              - name: points
+                label: נקודות
+                label_singular: נקודה
+                widget: list
+                summary: "{{title}}"
+                fields:
+                  - { name: title, label: "תחילת הנקודה, מודגשת", widget: string }
+                  - { name: text, label: "המשך הנקודה", widget: string }
           - name: tour
             label: הסיור במסכים
             widget: object
@@ -98,20 +112,28 @@ collections:
                   - { name: full, label: "המסך המלא (WebP או PNG)", widget: image }
                   - { name: full_title, label: "שם המסך המלא", widget: string }
                   - { name: sr, label: "שם קצר לקוראי מסך", widget: string }
-              - name: more
-                label: "עוד שני מסכים (בלי מספור)"
-                label_singular: מסך
-                widget: list
-                summary: "{{title}}"
-                fields:
-                  - { name: title, label: "כותרת", widget: string }
-                  - { name: text, label: "טקסט", widget: text }
-                  - { name: image, label: "צילום ממוקד (WebP או PNG)", widget: image }
-                  - { name: alt, label: "תיאור הצילום (Alt)", widget: text }
-                  - { name: caption, label: "כיתוב קטן מתחת לצילום", widget: string }
-                  - { name: full, label: "המסך המלא (WebP או PNG)", widget: image }
-                  - { name: full_title, label: "שם המסך המלא", widget: string }
-                  - { name: sr, label: "שם קצר לקוראי מסך", widget: string }
+          - name: board
+            label: "לוח הציור בטאבלט"
+            widget: object
+            fields:
+              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
+              - { name: title, label: "כותרת", widget: string }
+              - { name: text, label: "טקסט", widget: text }
+              - { name: image, label: "צילום מסך טאבלט (WebP או PNG, לרוחב)", widget: image }
+              - { name: alt, label: "תיאור הצילום (Alt)", widget: text }
+          - name: sms
+            label: "טסט מהודעת SMS"
+            widget: object
+            fields:
+              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
+              - { name: title, label: "כותרת", widget: string }
+              - { name: text, label: "טקסט", widget: text }
+              - { name: image, label: "צילום ממוקד (WebP או PNG)", widget: image }
+              - { name: alt, label: "תיאור הצילום (Alt)", widget: text }
+              - { name: caption, label: "כיתוב קטן מתחת לצילום", widget: string }
+              - { name: full, label: "המסך המלא (WebP או PNG)", widget: image }
+              - { name: full_title, label: "שם המסך המלא", widget: string }
+              - { name: sr, label: "שם קצר לקוראי מסך", widget: string }
           - name: plus
             label: "הבלוק הכחול: ומה עוד יש בלוטם"
             widget: object
@@ -119,14 +141,45 @@ collections:
               - { name: title, label: "כותרת", widget: string }
               - { name: title_accent, label: "סוף הכותרת, באלמוג", widget: string }
               - { name: intro, label: "פסקת פתיחה", widget: text }
-              - name: groups
-                label: קבוצות יכולות
-                label_singular: קבוצה
+              - { name: phone_alt, label: "תיאור הצילום בטלפון (Alt)", widget: text }
+              - name: orbit
+                label: "יכולות סביב הטלפון"
+                label_singular: יכולת
                 widget: list
-                summary: "{{title}}"
+                summary: "{{label}}"
+                hint: "עד 12 יכולות. במחשב הן מסודרות סביב הטלפון, ובטלפון ברשת מתחתיו."
+                max: 12
                 fields:
-                  - { name: title, label: "כותרת הקבוצה", widget: string }
-                  - { name: items, label: "יכולות", widget: list, field: { name: item, label: "יכולת", widget: string } }
+                  - { name: label, label: "שם היכולת", widget: string, hint: "קצר, עד כ-22 תווים." }
+                  - name: icon
+                    label: אייקון
+                    widget: select
+                    options:
+                      - { label: "יומן", value: calendar }
+                      - { label: "פעמון", value: bell }
+                      - { label: "הודעה", value: chat }
+                      - { label: "SMS", value: sms }
+                      - { label: "חשבונית", value: invoice }
+                      - { label: "רכב", value: car }
+                      - { label: "דוח", value: report }
+                      - { label: "בלי קליטה", value: offline }
+                      - { label: "ענן וגיבוי", value: cloud }
+                      - { label: "פח מחזור", value: trash }
+                      - { label: "ספר", value: book }
+                      - { label: "עט", value: pen }
+                      - { label: "צבעים", value: palette }
+                      - { label: "קישור", value: link }
+                      - { label: "כוכב", value: star }
+                  - name: color
+                    label: צבע
+                    widget: select
+                    options:
+                      - { label: "טורקיז", value: "#4fd1c7" }
+                      - { label: "צהוב", value: "#f2c14e" }
+                      - { label: "ירוק", value: "#3ecf8e" }
+                      - { label: "אלמוג", value: "#f87860" }
+                      - { label: "כחול", value: "#7aa7ff" }
+                      - { label: "סגול", value: "#c39bff" }
               - name: nums
                 label: מספרים
                 label_singular: מספר

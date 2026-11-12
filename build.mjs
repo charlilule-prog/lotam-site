@@ -40,6 +40,28 @@ function imageSize(file) {
 }
 const withSize = (item) => { const [w, h] = imageSize(join(root, "static", item.image)); return { ...item, image_w: w, image_h: h }; };
 
+
+/* icons for the capabilities around the phone ("ומה עוד יש בלוטם"); the editor picks one by name */
+const ICONS = {
+  calendar: '<rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18M9 15l2 2 4-4"/>',
+  bell: '<path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10.5 20a1.7 1.7 0 0 0 3 0"/>',
+  chat: '<path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.7-5.2A8.4 8.4 0 1 1 21 11.5z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/>',
+  sms: '<rect x="3" y="5" width="18" height="13" rx="3"/><path d="M7 10h10M7 13h6"/><path d="M8 18l-2 3"/>',
+  invoice: '<path d="M6 3h9l3 3v15H6z"/><path d="M14 3v4h4M9 12h6M9 16h4"/>',
+  car: '<path d="M5 16l1.5-5A2 2 0 0 1 8.4 9.5h7.2a2 2 0 0 1 1.9 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><circle cx="7.5" cy="20" r="1.2"/><circle cx="16.5" cy="20" r="1.2"/>',
+  report: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 17v-3M12 17v-6M16 17V9"/>',
+  offline: '<path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19.5" r="1"/><path d="M3 3l18 18"/>',
+  cloud: '<path d="M7 18a4.5 4.5 0 1 1 .6-9A6 6 0 0 1 19 10a4 4 0 0 1-1 8z"/><path d="M12 12v6M9.5 14.5L12 12l2.5 2.5"/>',
+  trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/>',
+  book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M8 7h8M8 11h6"/>',
+  pen: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+  palette: '<circle cx="12" cy="12" r="9"/><circle cx="8" cy="10" r="1.2"/><circle cx="12" cy="7.5" r="1.2"/><circle cx="16" cy="10" r="1.2"/><path d="M12 21a2.5 2.5 0 0 1 0-5h2"/>',
+  link: '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
+  star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+};
+const iconSvg = (name) => `<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ICONS.star}</svg>`;
+const safeColor = (c) => (/^#[0-9a-f]{3,8}$/i.test(String(c || "")) ? c : "#4fd1c7");
+
 /* ---------- tiny template engine: {{a.b}} escaped, {{{a.b}}} raw, {{#each list}}…{{/each}}, {{this}}, {{@n}}, {{@nn}} ---------- */
 function lookup(path, stack) {
   if (path === "this") return stack[0].item;
@@ -85,7 +107,9 @@ const ld = (graph) => JSON.stringify({ "@context": "https://schema.org", "@graph
 
 /* ---------- home ---------- */
 const homeData = { ...home, site,
-  tour: { ...home.tour, steps: home.tour.steps.map(withSize), more: home.tour.more.map(withSize) },
+  tour: { ...home.tour, steps: home.tour.steps.map(withSize) },
+  sms: withSize(home.sms),
+  plus: { ...home.plus, orbit: home.plus.orbit.map((o) => ({ ...o, color: safeColor(o.color), icon_svg: iconSvg(o.icon) })) },
   faq: { ...home.faq, items: home.faq.items.map((x) => ({ ...x, a_html: inline(x.a) })) },
   verification,
   jsonld: ld([org,

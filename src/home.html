@@ -24,7 +24,6 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="fonts/heebo-hebrew-400-normal.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/rubik-hebrew-800-normal.woff2" crossorigin>
-<link rel="preload" as="image" href="img/calendar-full.webp" media="(min-width:960px)">
 <style>
 /* Heebo and Rubik: SIL Open Font License 1.1 (fonts/LICENSE-*.txt) */
 @font-face{font-family:Heebo;font-style:normal;font-weight:400;font-display:swap;src:url(fonts/heebo-hebrew-400-normal.woff2) format('woff2');unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
@@ -103,36 +102,6 @@ h1.eyebrow{font-family:Heebo, system-ui, sans-serif;line-height:1.4;letter-spaci
 .link-light{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--white);font-weight:500;text-decoration:underline;text-decoration-color:rgba(255,255,255,.4);text-underline-offset:5px}
 .link-light:hover{text-decoration-color:var(--white)}
 @media (max-width:599px){.hero .btn-trial{width:100%}}
-.hero-shot{justify-self:center;width:min(88vw, 340px)}
-.phones{display:grid;gap:20px}
-.js .phones .ph:not(.on){display:none}
-.pitch{display:flex;flex-direction:column;gap:12px;margin-top:4px}
-.pitch-line{font-family:var(--display);font-weight:800;font-size:clamp(20px, 5.2vw, 26px);line-height:1.3;color:var(--white)}
-.pitch-line span{color:var(--coral)}
-.modes{display:grid;gap:10px}
-.mode{display:flex;gap:14px;align-items:flex-start;text-align:start;width:100%;min-height:56px;padding:14px 16px;border-radius:16px;border:1.5px solid #1d4d77;background:rgba(15,60,99,.55);color:var(--on-navy);font:inherit;cursor:pointer;transition:border-color .15s ease, background-color .15s ease}
-.mode:hover{border-color:var(--teal)}
-.mode[aria-pressed="true"]{border-color:var(--teal);background:var(--navy-2)}
-.mode-ic{flex:none;width:40px;height:40px;border-radius:12px;background:rgba(79,209,199,.14);color:var(--teal);display:flex;align-items:center;justify-content:center}
-.mode-txt{display:flex;flex-direction:column;gap:2px;min-width:0;font-size:16px;line-height:1.5}
-.mode-txt b{font-family:var(--display);font-size:19px;color:var(--white)}
-.mode-wa{display:flex;gap:8px;align-items:flex-start;margin-top:8px;padding:9px 11px;border-radius:12px;background:rgba(79,209,199,.12);color:#e6eef6;font-size:15px;line-height:1.5}
-.mode-wa svg{flex:none;margin-top:2px;color:var(--teal)}
-@media (min-width:600px){.modes{grid-template-columns:1fr 1fr}}
-.phone{background:var(--white);border:6px solid var(--navy-3);border-radius:36px;padding:4px;box-shadow:0 30px 70px rgba(0,8,20,.5), 0 0 0 1px rgba(255,255,255,.06)}
-.phone img{border-radius:28px;width:100%;aspect-ratio:390/844;object-fit:cover}
-.demo-tag{display:block;text-align:center;font-size:13px;color:var(--on-navy-2);margin-top:12px}
-@media (min-width:960px){
-  .hero .wrap{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;padding-block:72px 88px;gap:48px}
-  .hero-shot{width:100%;max-width:540px}
-  .phones{grid-template-areas:"s";gap:0}
-  .phones .ph,.js .phones .ph:not(.on){display:block;grid-area:s;width:286px;transition:transform .3s ease, opacity .3s ease}
-  .phones #ph-manage{justify-self:start}
-  .phones #ph-teach{justify-self:end;margin-top:64px}
-  .phones .ph:not(.on){transform:scale(.94);opacity:.82;z-index:1}
-  .phones .ph.on{z-index:2}
-}
-
 /* feature chips under the hero */
 .chips{background:var(--white);border-bottom:1px solid var(--line)}
 .chips ul{list-style:none;margin:0;padding:20px 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
@@ -161,12 +130,92 @@ h1.eyebrow{font-family:Heebo, system-ui, sans-serif;line-height:1.4;letter-spaci
 .sec-head p{color:var(--muted);font-size:18px}
 @media (min-width:960px){.sec{padding-block:88px}}
 
-/* tour */
+/* ================= devices: phone (light titanium), tablet, laptop ================= */
+.phone{--w:300px;position:relative;width:var(--w);max-width:100%;flex:none;padding:calc(var(--w)*.03);border-radius:calc(var(--w)*.165);
+  background:linear-gradient(135deg,#f4f4f2 0%,#c9c9c6 18%,#8d8f93 50%,#d7d7d4 80%,#9b9da1 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 0 3.5px #1b1d21,0 2px 0 rgba(255,255,255,.4),0 70px 90px -40px rgba(0,8,20,.7),0 30px 50px -25px rgba(0,8,20,.45)}
+.phone .glass{position:relative;border-radius:calc(var(--w)*.135);overflow:hidden;background:#000;padding:calc(var(--w)*.012)}
+.phone .scr{position:relative;border-radius:calc(var(--w)*.125);overflow:hidden;background:#f4f6f3;aspect-ratio:390/844;padding-top:calc(var(--w)*.1);display:grid;grid-template:minmax(0,1fr)/minmax(0,1fr)}
+.phone .scr > img{grid-area:1/1;width:100%;height:100%;object-fit:cover;object-position:top}
+.phone .island{position:absolute;top:calc(var(--w)*.03);left:50%;transform:translateX(-50%);width:28%;height:calc(var(--w)*.075);border-radius:999px;background:#050608;box-shadow:inset 0 0 0 1px #1b1e24}
+.phone .sheen{position:absolute;inset:calc(var(--w)*.03);border-radius:calc(var(--w)*.135);pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 26%)}
+.phone .k{position:absolute;width:3px;border-radius:2px;background:linear-gradient(90deg,#b9bbbe,#7e8085)}
+.phone .k1{left:-2px;top:21%;height:6%}.phone .k2{left:-2px;top:29%;height:10%}.phone .k3{right:-2px;top:25%;height:13%}
+.phone.half{border-bottom-left-radius:0;border-bottom-right-radius:0;padding-bottom:0;-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
+.phone.half .glass{border-bottom-left-radius:0;border-bottom-right-radius:0;padding-bottom:0}
+.phone.half .scr{aspect-ratio:auto;border-bottom-left-radius:0;border-bottom-right-radius:0;display:block}
+.phone.half .scr > img{height:auto}
+.tablet{--w:640px;position:relative;width:var(--w);max-width:100%;padding:calc(var(--w)*.022);border-radius:calc(var(--w)*.045);
+  background:linear-gradient(135deg,#f1f1ef,#bdbebf 30%,#8e9094 60%,#d2d2cf);box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 0 3px #1b1d21,0 60px 90px -40px rgba(0,8,20,.6),0 24px 40px -24px rgba(0,8,20,.4)}
+.tablet .glass{background:#000;border-radius:calc(var(--w)*.028);padding:calc(var(--w)*.012);overflow:hidden}
+.tablet .glass img{border-radius:calc(var(--w)*.018);width:100%;aspect-ratio:1400/978;object-fit:cover}
+.laptop{--w:760px;position:relative;width:var(--w);max-width:100%}
+.laptop .lid{background:#0b0d10;border-radius:calc(var(--w)*.026) calc(var(--w)*.026) 0 0;padding:calc(var(--w)*.02) calc(var(--w)*.02) calc(var(--w)*.03);box-shadow:inset 0 0 0 2px #2a2d33}
+.laptop .lid img{width:100%;aspect-ratio:1600/1000;object-fit:cover;border-radius:3px}
+.laptop .base{height:calc(var(--w)*.035);margin-inline:-6%;border-radius:0 0 calc(var(--w)*.04) calc(var(--w)*.04);background:linear-gradient(#dcdcda,#a9abae 60%,#7f8185);position:relative;box-shadow:0 24px 30px -18px rgba(0,8,20,.35)}
+.laptop .base::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:16%;height:40%;border-radius:0 0 10px 10px;background:#9a9c9f}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}}
+
+/* ================= hero: a pair of phones, manage + teach ================= */
+.pitch-line{font-family:var(--display);font-weight:800;font-size:clamp(20px, 5.2vw, 26px);line-height:1.3;color:var(--white)}
+.pitch-line span{color:var(--coral)}
+.pair-wrap{min-width:0;width:100%}
+.pair{display:flex;justify-content:center;align-items:flex-start;gap:clamp(14px,4vw,40px);perspective:1800px}
+.pair figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:18px}
+.pair .phone{--w:250px;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.pair .f-manage .phone{transform:rotateY(10deg) rotateZ(1.5deg)}
+.pair .f-teach{margin-top:64px}
+.pair .f-teach .phone{transform:rotateY(-10deg) rotateZ(-1.5deg)}
+.pair figure:hover .phone{transform:none}
+.pair figcaption{text-align:center;max-width:260px}
+.pair figcaption i{display:inline-block;width:28px;height:3px;border-radius:2px;margin-bottom:8px}
+.f-manage figcaption i{background:var(--teal)} .f-teach figcaption i{background:var(--coral)}
+.pair figcaption b{display:block;font:800 22px var(--display);color:var(--white)}
+.pair figcaption span{display:block;color:var(--on-navy);font-size:15px;line-height:1.45;margin-top:4px}
+.swipe{display:none}
+.demo-tag{display:block;text-align:center;font-size:13px;color:var(--on-navy-2);margin-top:14px}
+@media (max-width:959px){
+  .hero .wrap > *{min-width:0}
+  .pair{justify-content:flex-start;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;perspective:none;
+    margin-inline:calc(-1*max(var(--gutter), env(safe-area-inset-left, 0px)));padding:8px max(var(--gutter), env(safe-area-inset-left, 0px)) 4px}
+  .pair::-webkit-scrollbar{display:none}
+  .pair figure{scroll-snap-align:center;flex:none}
+  .pair .phone{--w:min(80vw,320px);transform:none!important}
+  .pair .f-teach{margin-top:0}
+  .pair figcaption{max-width:min(80vw,320px)}
+  .swipe{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;color:var(--on-navy-2);font-size:14px}
+  .swipe .d{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);transition:width .3s,background .3s}
+  .swipe .d.on{width:22px;border-radius:5px;background:var(--teal)}
+  .swipe .d.on.t{background:var(--coral)}
+}
+@media (min-width:960px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;padding-block:72px 88px;gap:40px}
+}
+
+/* ================= devices strip ================= */
+.strip{background:var(--white);border-bottom:1px solid var(--line);padding-block:40px;overflow:hidden}
+.strip .wrap{display:grid;gap:28px;align-items:center}
+.strip h2{font-weight:800;font-size:clamp(24px,5.6vw,34px)}
+.strip h2 span{color:var(--teal-ink)}
+.strip ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.strip li{display:flex;gap:10px;align-items:flex-start;font-size:17px}
+.strip li svg{flex:none;margin-top:4px;color:var(--teal-ink)}
+.mini{position:relative;height:clamp(200px,52vw,280px);width:100%;max-width:520px;justify-self:center}
+.mini .laptop{position:absolute;left:50%;top:0;transform:translateX(-50%);--w:min(78vw,400px)}
+.mini .tablet{position:absolute;right:0;bottom:0;--w:min(36vw,190px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 0 3px #1b1d21,0 26px 36px -18px rgba(0,8,20,.45)}
+.mini .phone{position:absolute;left:2%;bottom:-4px;--w:min(17vw,86px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 0 3px #1b1d21,0 26px 36px -18px rgba(0,8,20,.45)}
+.mini .phone .island{display:none}
+.mini .phone .scr{padding-top:calc(var(--w)*.06)}
+@media (min-width:860px){.strip .wrap{grid-template-columns:1fr 1.1fr}}
+
+/* ================= tour: sticky phone (desktop), half phones (mobile) ================= */
 .tour{padding-top:24px}
 [id]{scroll-margin-top:84px}
-.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:64px}
-.step{display:grid;gap:24px;align-items:center}
-.step-text{display:flex;flex-direction:column;gap:14px;min-width:0}
+.tour-grid{display:block}
+.t-visual{display:none}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:56px}
+.step{display:flex;flex-direction:column;gap:12px}
 .num{font-family:var(--display);font-weight:800;font-size:15px;color:var(--teal-ink);display:inline-flex;align-items:center;gap:10px}
 .num::after{content:"";width:40px;height:2px;background:currentColor;opacity:.5}
 .step h3{font-weight:800;font-size:clamp(24px, 5.6vw, 32px)}
@@ -174,61 +223,89 @@ h1.eyebrow{font-family:Heebo, system-ui, sans-serif;line-height:1.4;letter-spaci
 .ticks{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
 .ticks li{display:flex;gap:10px;align-items:flex-start}
 .ticks svg{flex:none;margin-top:5px;color:var(--teal-ink)}
-.shot{margin:0;position:relative;justify-self:center;width:100%;max-width:440px}
-.shot-stage{position:relative;padding:18px;border-radius:28px;background:var(--teal-soft)}
-.step:nth-child(even) .shot-stage{background:#fde9e4}
-.screen{border-radius:18px;overflow:hidden;background:var(--white);box-shadow:0 18px 40px rgba(0,42,76,.16), 0 0 0 1px rgba(0,42,76,.06)}
-.screen img{width:100%}
-.shot figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;margin-top:10px;font-size:14px;color:var(--muted)}
+.m-shot{margin:12px calc(-1*max(var(--gutter), env(safe-area-inset-left, 0px))) 0;padding-top:28px;background:linear-gradient(180deg,var(--teal-soft),var(--bg));display:flex;flex-direction:column;align-items:center;overflow:hidden}
+.step:nth-child(even) .m-shot{background:linear-gradient(180deg,#fde9e4,var(--bg))}
+.m-shot .phone{--w:min(92vw,360px)}
+.m-shot figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;width:100%;padding:6px max(var(--gutter), env(safe-area-inset-left, 0px)) 0;font-size:14px;color:var(--muted)}
 .expand{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border-radius:12px;border:1px solid var(--line);background:var(--white);color:var(--ink);font:inherit;font-weight:700;font-size:15px;cursor:pointer}
 .expand:hover{border-color:var(--teal-ink);color:var(--teal-ink)}
-@media (max-width:599px){
-  .step .shot{width:auto;max-width:none;margin-inline:calc(var(--gutter) * -1)}
-  .step .shot-stage{border-radius:0;padding:14px 12px}
-  .step .shot figcaption{padding-inline:var(--gutter)}
-}
 @media (min-width:960px){
-  .steps{gap:104px}
-  .step{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px}
-  .step:nth-child(even) .step-text{order:2}
-  .step-text{max-width:500px}
+  .tour-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px}
+  .t-visual{display:block}
+  .t-sticky{position:sticky;top:96px;height:calc(100vh - 120px);min-height:600px;display:flex;align-items:center;justify-content:center;gap:28px}
+  .t-sticky .phone{--w:min(300px,calc((100vh - 160px)/2.2))}
+  .t-sticky .scr > img{opacity:0;transform:scale(1.03);transition:opacity .55s ease,transform .7s ease}
+  .t-sticky .scr > img.on{opacity:1;transform:none}
+  html:not(.js) .t-sticky .scr > img:first-child{opacity:1;transform:none}
+  .dots{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .dots li{width:8px;height:8px;border-radius:50%;background:#c8d3df;transition:height .35s,background .35s}
+  .dots li.on{height:28px;border-radius:6px;background:var(--teal-ink)}
+  .steps{gap:0}
+  .step{min-height:72vh;justify-content:center;max-width:520px}
+  .js .step{opacity:.35;transition:opacity .4s}
+  .js .step.on{opacity:1}
   .step h3{font-size:34px}
+  .m-shot{display:none}
 }
 
-/* more */
-.more{display:grid;gap:20px;margin-top:72px}
-.more-item{display:grid;gap:18px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px;align-items:center}
-.more-item h3{font-size:22px;font-weight:800}
-.more-item p{color:var(--muted)}
-.more-item .shot{max-width:340px}
-.more-item .shot-stage{padding:12px;background:var(--bg)}
-@media (min-width:760px){.more{grid-template-columns:1fr 1fr}.more-item{align-content:start}}
+/* ================= drawing board on a tablet, SMS on a phone ================= */
+.board{background:var(--navy);color:var(--white);padding-block:72px;overflow:hidden}
+.board .wrap{display:grid;gap:36px;align-items:center}
+.board .kicker{color:var(--teal)}
+.board h2{font-weight:800;font-size:clamp(28px, 6.4vw, 42px);margin-block:8px 14px}
+.board p{color:var(--on-navy);font-size:18px}
+.board .wrap > *{min-width:0}
+.board .tablet{--w:min(calc(100vw - 2 * var(--gutter)),720px);justify-self:center}
+@media (min-width:960px){.board .wrap{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}.board .tablet{--w:min(100%,720px);transform:perspective(2000px) rotateY(-10deg) rotateX(4deg);transition:transform .8s cubic-bezier(.2,.8,.2,1)}.board .tablet:hover{transform:none}}
+.sms{padding-block:64px 24px;overflow:hidden}
+.sms .wrap{display:grid;gap:24px;align-items:center}
+.sms h2{font-weight:800;font-size:clamp(26px, 6vw, 36px);margin-block:8px 12px}
+.sms p{color:var(--muted);font-size:18px}
+.sms figure{margin:0;display:flex;flex-direction:column;align-items:center}
+.sms .phone{--w:min(92vw,340px)}
+.sms figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;max-width:360px;font-size:14px;color:var(--muted);padding-top:6px}
+@media (min-width:960px){.sms .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.sms{padding-block:88px 40px}}
 
-/* everything a teacher needs, and more */
+/* ================= everything else: phone in the middle, capabilities around it ================= */
 .plus{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
-.plus::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(closest-side,rgba(248,120,96,.14),rgba(248,120,96,0));inset-inline-start:-220px;top:-220px;pointer-events:none}
-.plus .wrap{position:relative;padding-block:64px 48px;display:flex;flex-direction:column;gap:40px}
-.plus-head{display:flex;flex-direction:column;gap:14px;max-width:760px}
-.plus h2{font-weight:800;font-size:clamp(34px, 8.6vw, 60px);line-height:1.1;text-wrap:balance}
+.plus::before{content:"";position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:min(1100px,180vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(79,209,199,.16),rgba(79,209,199,0));pointer-events:none}
+.plus .wrap{position:relative;padding-block:64px 48px;display:flex;flex-direction:column;gap:32px}
+.plus-head{display:flex;flex-direction:column;gap:12px;max-width:720px;margin-inline:auto;text-align:center}
+.plus h2{font-weight:800;font-size:clamp(30px, 7vw, 52px);line-height:1.1}
 .plus h2 span{color:var(--coral)}
-.plus-head p{color:var(--on-navy);font-size:clamp(18px, 4.4vw, 21px)}
-.plus-grid{display:grid;gap:16px}
-.plus-group{background:var(--navy-2);border-radius:var(--radius);padding:24px 22px;display:flex;flex-direction:column;gap:14px}
-.plus-group h3{font-size:20px;font-weight:800;color:var(--teal)}
-.plus-group ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
-.plus-group li{display:flex;gap:10px;align-items:flex-start;color:#e6eef6;font-size:17px;line-height:1.5}
-.plus-group li svg{flex:none;margin-top:4px;color:var(--teal)}
-.plus-nums{list-style:none;margin:0;padding:32px 0 0;border-top:1px solid #1d4d77;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
+.plus-head p{color:var(--on-navy);font-size:clamp(17px, 4.4vw, 20px)}
+.orbit{position:relative;width:min(100%,1000px);margin-inline:auto;display:flex;flex-direction:column;align-items:center;gap:28px}
+.orbit .phone{--w:min(64vw,260px)}
+.orbit .ring{display:none}
+.tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%}
+.tile{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.tile .ic{flex:none;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,#fff 0%,color-mix(in srgb,var(--c) 32%,#fff) 100%);
+  box-shadow:0 10px 22px rgba(0,10,25,.3),inset 0 0 0 1px rgba(255,255,255,.7),inset 0 -3px 0 color-mix(in srgb,var(--c) 45%,transparent)}
+.tile .ic svg{width:22px;height:22px;color:color-mix(in srgb,var(--c) 70%,#002a4c)}
+.tile .tl{font-size:15px;font-weight:700;line-height:1.3;color:#e6eef6}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media (min-width:760px){
+  .orbit{display:block;height:700px}
+  .orbit .phone{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);--w:270px}
+  .orbit .ring{display:block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px dashed rgba(255,255,255,.12);pointer-events:none}
+  .orbit .r1{width:min(560px,72%);aspect-ratio:1} .orbit .r2{width:min(860px,100%);aspect-ratio:1}
+  .tiles{display:block}
+  .tile{position:absolute;flex-direction:column;gap:8px;width:130px;margin-left:-65px;margin-top:-32px;padding:0;border:0;background:none}
+  .tile .ic{width:58px;height:58px;border-radius:18px;box-shadow:0 14px 28px rgba(0,10,25,.35),inset 0 0 0 1px rgba(255,255,255,.7),inset 0 -3px 0 color-mix(in srgb,var(--c) 45%,transparent)}
+  .tile .ic svg{width:26px;height:26px}
+  .tile .tl{text-align:center;font-size:14px;text-shadow:0 2px 8px rgba(0,10,25,.5)}
+  .tile:nth-child(1){left:20%;top:10%} .tile:nth-child(2){left:80%;top:10%} .tile:nth-child(3){left:9%;top:32%} .tile:nth-child(4){left:91%;top:32%}
+  .tile:nth-child(5){left:6%;top:56%} .tile:nth-child(6){left:94%;top:56%} .tile:nth-child(7){left:14%;top:80%} .tile:nth-child(8){left:86%;top:80%}
+  .tile:nth-child(9){left:33%;top:94%} .tile:nth-child(10){left:67%;top:94%} .tile:nth-child(11){left:50%;top:-2%} .tile:nth-child(12){left:50%;top:104%}
+}
+/* floats once (about 4 seconds) when the section comes into view, then rests */
+@media (min-width:760px) and (prefers-reduced-motion:no-preference){.orbit.in .tile{animation:bob 3.2s ease-in-out 1 both}.orbit.in .tile:nth-child(3n+2){animation-delay:.35s}.orbit.in .tile:nth-child(3n){animation-delay:.7s}}
+.plus-nums{list-style:none;margin:16px 0 0;padding:32px 0 0;border-top:1px solid #1d4d77;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}
 .plus-nums li{display:flex;flex-direction:column;gap:4px}
 .plus-nums b{font-family:var(--display);font-weight:800;font-size:clamp(30px, 8vw, 44px);color:var(--teal);line-height:1.1;font-variant-numeric:tabular-nums}
 .plus-nums span{color:var(--on-navy);font-size:16px}
-@media (min-width:900px){
-  .plus .wrap{padding-block:104px 72px;gap:56px}
-  .plus-head{max-width:none}
-  .plus-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-  .plus-group{padding:28px}
-  .plus-nums{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:44px}
-}
+@media (min-width:900px){.plus .wrap{padding-block:96px 72px}.plus-nums{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:44px}}
 
 /* join + price */
 .join-grid{display:grid;gap:24px}
@@ -308,25 +385,14 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
         </a>
       </div>
       <p class="note">{{hero.note}}</p>
-      <div class="pitch">
-        <p class="pitch-line">{{hero.pitch}} <span>{{hero.pitch_accent}}</span></p>
-        <div class="modes" role="group" aria-label="מה מוצג בצילום">
-          <button class="mode" type="button" aria-pressed="true" data-show="ph-manage" aria-controls="ph-manage">
-            <span class="mode-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
-            <span class="mode-txt"><b>{{hero.manage_title}}</b><span>{{hero.manage_text}}</span><span class="mode-wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.7-5.2A8.4 8.4 0 1 1 21 11.5z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg><span>{{hero.manage_whatsapp}}</span></span></span>
-          </button>
-          <button class="mode" type="button" aria-pressed="false" data-show="ph-teach" aria-controls="ph-teach">
-            <span class="mode-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M8 7h8M8 11h6"/></svg></span>
-            <span class="mode-txt"><b>{{hero.teach_title}}</b><span>{{hero.teach_text}}</span></span>
-          </button>
-        </div>
-      </div>
+      <p class="pitch-line">{{hero.pitch}} <span>{{hero.pitch_accent}}</span></p>
     </div>
-    <div class="hero-shot">
-      <div class="phones">
-        <div class="phone ph on" id="ph-manage"><img src="img/calendar-full.webp" width="780" height="1688" alt="{{hero.manage_alt}}"></div>
-        <div class="phone ph" id="ph-teach"><img src="img/plan-full.webp" width="780" height="1688" alt="{{hero.teach_alt}}" loading="lazy" decoding="async"></div>
+    <div class="pair-wrap">
+      <div class="pair rise" aria-label="{{hero.manage_title}} ו{{hero.teach_title}}">
+        <figure class="f-manage"><div class="phone"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="img/calendar-full.webp" width="780" height="1688" alt="{{hero.manage_alt}}" decoding="async"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div><figcaption><i></i><b>{{hero.manage_title}}</b><span>{{hero.manage_caption}}</span></figcaption></figure>
+        <figure class="f-teach"><div class="phone"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="img/tasks-full.webp" width="780" height="1688" alt="{{hero.teach_alt}}" decoding="async"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div><figcaption><i></i><b>{{hero.teach_title}}</b><span>{{hero.teach_caption}}</span></figcaption></figure>
       </div>
+      <div class="swipe" aria-hidden="true"><span class="d on m"></span><span class="d t"></span><span>{{hero.swipe_hint}}</span></div>
       <span class="demo-tag">{{hero.demo_tag}}</span>
     </div>
   </div>
@@ -341,10 +407,26 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
       <li><a href="#s-money"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg>תשלומים</a></li>
       <li><a href="#s-parents"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>קישור להורים</a></li>
       <li><a href="#s-theory"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M8 7h8M8 11h6"/></svg>תאוריה</a></li>
-      <li><a href="#s-more"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>לוח ציור</a></li>
+      <li><a href="#board"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>לוח ציור</a></li>
     </ul>
   </div>
 </nav>
+
+<section class="strip" aria-labelledby="devices-title">
+  <div class="wrap">
+    <div>
+      <h2 id="devices-title">{{devices.title}} <span>{{devices.title_accent}}</span></h2>
+      <ul>
+{{#each devices.points}}        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>{{title}}</b> {{text}}</span></li>
+{{/each}}      </ul>
+    </div>
+    <div class="mini" aria-hidden="true">
+      <div class="laptop"><div class="lid"><img src="img/desktop-calendar.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async"></div><div class="base"></div></div>
+      <div class="tablet"><div class="glass"><img src="img/tablet-student.webp" width="1400" height="978" alt="" loading="lazy" decoding="async"></div></div>
+      <div class="phone"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="img/calendar-full.webp" width="780" height="1688" alt="" loading="lazy" decoding="async"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div>
+    </div>
+  </div>
+</section>
 
 <div class="drive" aria-hidden="true">
   <div class="wrap">
@@ -374,35 +456,38 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
       <p>{{tour.intro}}</p>
     </div>
 
+    <div class="tour-grid">
     <ol class="steps">
-{{#each tour.steps}}      <li class="step" id="{{id}}">
-        <div class="step-text">
+{{#each tour.steps}}      <li class="step" id="{{id}}" data-i="{{@n}}">
           <span class="num">{{@nn}}</span>
           <h3>{{title}}</h3>
           <p>{{text}}</p>
           <ul class="ticks">
 {{#each bullets}}            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>{{this}}</li>
 {{/each}}          </ul>
-        </div>
-        <figure class="shot">
-          <div class="shot-stage"><div class="screen"><img src="{{image}}" width="{{image_w}}" height="{{image_h}}" loading="lazy" decoding="async" alt="{{alt}}"></div></div>
-          <figcaption><span>{{caption}}</span><button class="expand" type="button" data-full="{{full}}" data-title="{{full_title}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>המסך המלא<span class="sr"> – {{sr}}</span></button></figcaption>
-        </figure>
+          <figure class="m-shot"><div class="phone half"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="{{image}}" width="{{image_w}}" height="{{image_h}}" loading="lazy" decoding="async" alt="{{alt}}"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div>
+            <figcaption><span>{{caption}}</span><button class="expand" type="button" data-full="{{full}}" data-title="{{full_title}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>המסך המלא<span class="sr"> – {{sr}}</span></button></figcaption>
+          </figure>
       </li>
 {{/each}}    </ol>
+    <div class="t-visual" aria-hidden="true"><div class="t-sticky"><div class="phone"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr">{{#each tour.steps}}<img src="{{full}}" width="780" height="1688" alt="" loading="lazy" decoding="async" data-i="{{@n}}">{{/each}}</div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div><ol class="dots">{{#each tour.steps}}<li data-i="{{@n}}"></li>{{/each}}</ol></div></div>
+    </div>
+  </div>
+</section>
 
-    <div class="more" id="s-more">
-{{#each tour.more}}      <div class="more-item">
-        <div class="step-text">
-          <h3>{{title}}</h3>
-          <p>{{text}}</p>
-        </div>
-        <figure class="shot">
-          <div class="shot-stage"><div class="screen"><img src="{{image}}" width="{{image_w}}" height="{{image_h}}" loading="lazy" decoding="async" alt="{{alt}}"></div></div>
-          <figcaption><span>{{caption}}</span><button class="expand" type="button" data-full="{{full}}" data-title="{{full_title}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>המסך המלא<span class="sr"> – {{sr}}</span></button></figcaption>
-        </figure>
-      </div>
-{{/each}}    </div>
+<section class="board" id="board" aria-labelledby="board-title">
+  <div class="wrap">
+    <div><span class="kicker">{{board.kicker}}</span><h2 id="board-title">{{board.title}}</h2><p>{{board.text}}</p></div>
+    <div class="tablet rise"><div class="glass"><img src="{{board.image}}" width="1400" height="978" alt="{{board.alt}}" loading="lazy" decoding="async"></div></div>
+  </div>
+</section>
+
+<section class="sms" id="sms" aria-labelledby="sms-title">
+  <div class="wrap">
+    <div><span class="kicker">{{sms.kicker}}</span><h2 id="sms-title">{{sms.title}}</h2><p>{{sms.text}}</p></div>
+    <figure><div class="phone half"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="{{sms.image}}" width="{{sms.image_w}}" height="{{sms.image_h}}" loading="lazy" decoding="async" alt="{{sms.alt}}"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div>
+      <figcaption><span>{{sms.caption}}</span><button class="expand" type="button" data-full="{{sms.full}}" data-title="{{sms.full_title}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>המסך המלא<span class="sr"> – {{sms.sr}}</span></button></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -412,9 +497,13 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
       <h2 id="plus-title">{{plus.title}} <span>{{plus.title_accent}}</span></h2>
       <p>{{plus.intro}}</p>
     </div>
-    <div class="plus-grid">
-{{#each plus.groups}}      <div class="plus-group"><h3>{{title}}</h3><ul>{{#each items}}<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>{{this}}</span></li>{{/each}}</ul></div>
-{{/each}}    </div>
+    <div class="orbit">
+      <span class="ring r1" aria-hidden="true"></span><span class="ring r2" aria-hidden="true"></span>
+      <div class="phone"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="img/more-full.webp" width="780" height="1688" loading="lazy" decoding="async" alt="{{plus.phone_alt}}"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div>
+      <ul class="tiles">
+{{#each plus.orbit}}        <li class="tile" style="--c:{{color}}"><span class="ic" aria-hidden="true">{{{icon_svg}}}</span><span class="tl">{{label}}</span></li>
+{{/each}}      </ul>
+    </div>
     <ul class="plus-nums" aria-label="לוטם במספרים">
 {{#each plus.nums}}      <li><b>{{num}}</b><span>{{label}}</span></li>
 {{/each}}    </ul>
@@ -493,19 +582,19 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
       io.observe(lane);
     } else go();
   }
-  // the second hero screen is fetched after the page has loaded, so it never competes with the first paint
-  var teachImg=document.querySelector('#ph-teach img');
-  if(teachImg){var eager=function(){teachImg.loading='eager';};if(document.readyState==='complete')eager();else window.addEventListener('load',eager);}
-  // the hero's "manage / teach" switch shows the matching screen
-  var modes=document.querySelectorAll('.mode');
-  modes.forEach(function(m){
-    m.addEventListener('click',function(){
-      modes.forEach(function(o){
-        var on=o===m;o.setAttribute('aria-pressed',on?'true':'false');
-        var ph=document.getElementById(o.getAttribute('data-show'));if(ph)ph.classList.toggle('on',on);
-      });
-    });
-  });
+  // phone: the dots under the swipeable pair follow the scroll position
+  var pair=document.querySelector('.pair'),sd=document.querySelectorAll('.swipe .d');
+  if(pair&&sd.length===2){pair.addEventListener('scroll',function(){var far=Math.abs(pair.scrollLeft)>pair.clientWidth*0.35;sd[0].classList.toggle('on',!far);sd[1].classList.toggle('on',far);},{passive:true});}
+  // desktop tour: the pinned phone shows the screen of the step in the middle of the view
+  var steps=[].slice.call(document.querySelectorAll('.step')),scr=[].slice.call(document.querySelectorAll('.t-sticky .scr > img')),dots=[].slice.call(document.querySelectorAll('.dots li'));
+  var show=function(i){steps.forEach(function(x){x.classList.toggle('on',x.dataset.i===i);});scr.forEach(function(x){x.classList.toggle('on',x.dataset.i===i);});dots.forEach(function(x){x.classList.toggle('on',x.dataset.i===i);});};
+  if(steps.length){show('1');
+    if(matchMedia('(min-width:960px)').matches){scr.forEach(function(x){x.loading='eager';});}
+    if('IntersectionObserver' in window){var so=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)show(en.target.dataset.i);});},{rootMargin:'-45% 0px -45% 0px'});steps.forEach(function(x){so.observe(x);});}
+  }
+  // the capabilities float once when their section comes into view
+  var orbit=document.querySelector('.orbit');
+  if(orbit&&'IntersectionObserver' in window){var oo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){orbit.classList.add('in');oo.disconnect();}});},{threshold:.35});oo.observe(orbit);}
   // full-screen view of a screenshot
   var dlg=document.getElementById('viewer'),img=document.getElementById('viewer-img'),cap=document.getElementById('viewer-cap'),last=null;
   document.querySelectorAll('.expand').forEach(function(b){
