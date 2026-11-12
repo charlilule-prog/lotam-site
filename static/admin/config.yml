@@ -55,20 +55,24 @@ collections:
             label: חלון הפתיחה
             widget: object
             fields:
-              - { name: nav_cta, label: "כפתור בסרגל העליון (במחשב)", widget: string }
+              - { name: nav_cta, label: "כפתור בסרגל העליון", widget: string }
               - { name: h1, label: "כותרת H1 (התגית הקטנה מעל הכותרת)", widget: string, hint: "הכותרת החשובה ביותר ל-SEO. אחת בלבד בעמוד." }
               - { name: headline, label: "כותרת גדולה (H2)", widget: string }
               - { name: headline_accent, label: "סוף הכותרת הגדולה, בטורקיז", widget: string }
               - { name: subtitle, label: "תת-כותרת", widget: string }
               - { name: subtitle_accent, label: "סוף התת-כותרת, בטורקיז", widget: string }
+              - { name: lead, label: "פסקת הפתיחה", widget: text }
               - { name: cta, label: "כפתור ראשי", widget: string }
               - { name: cta_secondary, label: "קישור משני", widget: string }
+              - { name: pitch, label: "שורה בולטת", widget: string }
+              - { name: pitch_accent, label: "סוף השורה הבולטת, באלמוג", widget: string }
               - { name: manage_title, label: "טלפון ימני: כותרת (לנהל)", widget: string }
               - { name: manage_caption, label: "טלפון ימני: משפט קצר מתחת", widget: text, hint: "עד כ-60 תווים, כדי שייכנס מתחת לטלפון." }
               - { name: teach_title, label: "טלפון שמאלי: כותרת (ללמד)", widget: string }
               - { name: teach_caption, label: "טלפון שמאלי: משפט קצר מתחת", widget: text, hint: "עד כ-75 תווים." }
               - { name: manage_alt, label: "תיאור הצילום של לנהל (Alt)", widget: text }
               - { name: teach_alt, label: "תיאור הצילום של ללמד (Alt)", widget: text }
+              - { name: swipe_hint, label: "רמז החלקה בטלפון", widget: string }
           - name: devices
             label: "רצועת המכשירים: מחשב, טאבלט וטלפון"
             widget: object
@@ -83,25 +87,6 @@ collections:
                 fields:
                   - { name: title, label: "תחילת הנקודה, מודגשת", widget: string }
                   - { name: text, label: "המשך הנקודה", widget: string }
-          - name: how
-            label: "שלוש הפעולות (מיד אחרי הפתיחה)"
-            widget: object
-            fields:
-              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
-              - { name: title, label: "כותרת", widget: string }
-              - name: steps
-                label: פעולות
-                label_singular: פעולה
-                widget: list
-                summary: "{{title}}"
-                max: 3
-                fields:
-                  - { name: title, label: "כותרת", widget: string }
-                  - { name: text, label: "משפט אחד", widget: string }
-                  - { name: image, label: "תקריב מהאפליקציה (WebP או PNG)", widget: image }
-                  - { name: alt, label: "תיאור התקריב (Alt)", widget: text }
-                  - { name: note, label: "תגית מודגשת מתחת (לא חובה)", widget: string, required: false }
-                  - { name: note_small, label: "שורה קטנה מתחת לתגית (לא חובה)", widget: string, required: false }
           - name: tour
             label: הסיור במסכים
             widget: object
