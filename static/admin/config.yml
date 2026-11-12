@@ -1,0 +1,216 @@
+# מסך העריכה של אתר לוטם (Sveltia CMS).
+# כל שמירה כאן נכנסת למאגר ב-GitHub, ו-Cloudflare Pages בונה ומפרסם את האתר מחדש תוך דקה-שתיים.
+backend:
+  name: github
+  repo: charlilule-prog/lotam-site   # owner/repo של מאגר האתר
+  branch: main
+  commit_messages:
+    update: "עריכת תוכן: {{collection}} / {{slug}}"
+    uploadMedia: "העלאת תמונה: {{path}}"
+    deleteMedia: "מחיקת תמונה: {{path}}"
+
+site_url: https://lotam.co.il
+display_url: https://lotam.co.il
+logo_url: /img/favicon.png
+media_folder: static/img
+public_folder: img
+
+collections:
+  - name: site
+    label: אתר לוטם
+    label_singular: עמוד
+    files:
+      # ------------------------------------------------------------ הגדרות ו-SEO כללי
+      - name: settings
+        label: "הגדרות האתר ו-SEO כללי"
+        file: content/settings.json
+        fields:
+          - { name: indexing, label: "להופיע בגוגל ובמנועי חיפוש", widget: boolean, default: false, hint: "כבוי = האתר באוויר אבל מבקש מגוגל ומכלי AI לא להציג אותו. מדליקים רק כשהכול מוכן להשקה." }
+          - { name: url, label: "כתובת האתר", widget: string, hint: "הכתובת המלאה עם / בסוף, למשל https://lotam.co.il/" }
+          - { name: name, label: "שם המוצר", widget: string }
+          - { name: alt_names, label: "שמות נוספים למוצר (לגוגל)", widget: list, field: { name: name, label: "שם", widget: string } }
+          - { name: app_url, label: "קישור לאפליקציה (כפתור בקשת גישה וכניסה)", widget: string }
+          - { name: whatsapp, label: "מספר וואטסאפ של התמיכה", widget: string, hint: "בפורמט בינלאומי בלי + ובלי רווחים, למשל 972501234567", pattern: ["^[0-9]{10,14}$", "ספרות בלבד, בפורמט בינלאומי"] }
+          - { name: offer_price, label: "מחיר חודשי בשקלים (לנתונים המובנים של גוגל)", widget: string, pattern: ["^[0-9]+(\\.[0-9]{1,2})?$", "מספר בלבד, למשל 89"] }
+          - { name: offer_description, label: "תיאור ההצעה (לגוגל)", widget: string }
+          - { name: features, label: "רשימת היכולות (לגוגל ולכלי AI)", widget: list, field: { name: feature, label: "יכולת", widget: string } }
+          - { name: google_verification, label: "קוד אימות Google Search Console", widget: string, required: false, hint: "רק הקוד עצמו מתוך תגית האימות. אפשר להשאיר ריק." }
+          - { name: bing_verification, label: "קוד אימות Bing Webmaster Tools", widget: string, required: false }
+
+      # ------------------------------------------------------------ עמוד הבית
+      - name: home
+        label: עמוד הבית
+        file: content/home.json
+        fields:
+          - name: seo
+            label: "SEO של עמוד הבית"
+            widget: object
+            fields:
+              - { name: title, label: "כותרת העמוד בגוגל (Title)", widget: string, hint: "מומלץ עד 60 תווים, עם מילת המפתח בהתחלה." }
+              - { name: description, label: "תיאור העמוד בגוגל (Meta Description)", widget: text, hint: "מומלץ 120 עד 160 תווים." }
+              - { name: og_title, label: "כותרת בשיתוף (וואטסאפ, פייסבוק)", widget: string }
+              - { name: og_description, label: "תיאור בשיתוף", widget: text }
+              - { name: og_image_alt, label: "תיאור תמונת השיתוף", widget: string }
+          - name: hero
+            label: חלון הפתיחה
+            widget: object
+            fields:
+              - { name: nav_cta, label: "כפתור בסרגל העליון", widget: string }
+              - { name: h1, label: "כותרת H1 (התגית הקטנה מעל הכותרת)", widget: string, hint: "הכותרת החשובה ביותר ל-SEO. אחת בלבד בעמוד." }
+              - { name: headline, label: "כותרת גדולה (H2)", widget: string }
+              - { name: headline_accent, label: "סוף הכותרת הגדולה, בטורקיז", widget: string }
+              - { name: subtitle, label: "תת-כותרת", widget: string }
+              - { name: subtitle_accent, label: "סוף התת-כותרת, בטורקיז", widget: string }
+              - { name: lead, label: "פסקת הפתיחה", widget: text }
+              - { name: cta, label: "כפתור ראשי", widget: string }
+              - { name: cta_secondary, label: "קישור משני", widget: string }
+              - { name: note, label: "שורת המחיר מתחת לכפתור", widget: string }
+              - { name: pitch, label: "שורה בולטת", widget: string }
+              - { name: pitch_accent, label: "סוף השורה הבולטת, באלמוג", widget: string }
+              - { name: manage_title, label: "כרטיס לנהל: כותרת", widget: string }
+              - { name: manage_text, label: "כרטיס לנהל: טקסט", widget: text }
+              - { name: manage_whatsapp, label: "כרטיס לנהל: שורת הווטסאפ", widget: text }
+              - { name: teach_title, label: "כרטיס ללמד: כותרת", widget: string }
+              - { name: teach_text, label: "כרטיס ללמד: טקסט", widget: text }
+              - { name: manage_alt, label: "תיאור הצילום של לנהל (Alt)", widget: text }
+              - { name: teach_alt, label: "תיאור הצילום של ללמד (Alt)", widget: text }
+              - { name: demo_tag, label: "כיתוב מתחת לצילומים", widget: string }
+          - name: tour
+            label: הסיור במסכים
+            widget: object
+            fields:
+              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
+              - { name: title, label: "כותרת", widget: string }
+              - { name: intro, label: "פסקת פתיחה", widget: text }
+              - name: steps
+                label: "שלבי הסיור (ממוספרים)"
+                label_singular: שלב
+                widget: list
+                summary: "{{title}}"
+                fields:
+                  - { name: id, label: "מזהה לקישור (באנגלית, בלי רווחים)", widget: string, pattern: ["^[a-z][a-z0-9-]*$", "אותיות קטנות באנגלית, ספרות ומקף"], hint: "לא לשנות אם לא חייבים: קיצורי הדרך בעמוד מפנים למזהה הזה." }
+                  - { name: title, label: "כותרת", widget: string }
+                  - { name: text, label: "טקסט", widget: text }
+                  - { name: bullets, label: "נקודות", widget: list, required: false, field: { name: bullet, label: "נקודה", widget: string } }
+                  - { name: image, label: "צילום ממוקד (WebP או PNG)", widget: image }
+                  - { name: alt, label: "תיאור הצילום (Alt)", widget: text, hint: "מה רואים בצילום. חשוב לנגישות ול-SEO." }
+                  - { name: caption, label: "כיתוב קטן מתחת לצילום", widget: string }
+                  - { name: full, label: "המסך המלא (WebP או PNG)", widget: image }
+                  - { name: full_title, label: "שם המסך המלא", widget: string }
+                  - { name: sr, label: "שם קצר לקוראי מסך", widget: string }
+              - name: more
+                label: "עוד שני מסכים (בלי מספור)"
+                label_singular: מסך
+                widget: list
+                summary: "{{title}}"
+                fields:
+                  - { name: title, label: "כותרת", widget: string }
+                  - { name: text, label: "טקסט", widget: text }
+                  - { name: image, label: "צילום ממוקד (WebP או PNG)", widget: image }
+                  - { name: alt, label: "תיאור הצילום (Alt)", widget: text }
+                  - { name: caption, label: "כיתוב קטן מתחת לצילום", widget: string }
+                  - { name: full, label: "המסך המלא (WebP או PNG)", widget: image }
+                  - { name: full_title, label: "שם המסך המלא", widget: string }
+                  - { name: sr, label: "שם קצר לקוראי מסך", widget: string }
+          - name: plus
+            label: "הבלוק הכחול: ומה עוד יש בלוטם"
+            widget: object
+            fields:
+              - { name: title, label: "כותרת", widget: string }
+              - { name: title_accent, label: "סוף הכותרת, באלמוג", widget: string }
+              - { name: intro, label: "פסקת פתיחה", widget: text }
+              - name: groups
+                label: קבוצות יכולות
+                label_singular: קבוצה
+                widget: list
+                summary: "{{title}}"
+                fields:
+                  - { name: title, label: "כותרת הקבוצה", widget: string }
+                  - { name: items, label: "יכולות", widget: list, field: { name: item, label: "יכולת", widget: string } }
+              - name: nums
+                label: מספרים
+                label_singular: מספר
+                widget: list
+                summary: "{{num}} · {{label}}"
+                fields:
+                  - { name: num, label: "מספר", widget: string }
+                  - { name: label, label: "הסבר", widget: string }
+          - name: join
+            label: הצטרפות ומחיר
+            widget: object
+            fields:
+              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
+              - { name: title, label: "כותרת", widget: string }
+              - name: steps
+                label: צעדי ההצטרפות
+                label_singular: צעד
+                widget: list
+                summary: "{{title}}"
+                fields:
+                  - { name: title, label: "כותרת", widget: string }
+                  - { name: text, label: "טקסט", widget: string }
+              - { name: price_line1, label: "מחיר: שורה ראשונה (בטורקיז)", widget: string }
+              - { name: price_line2, label: "מחיר: שורה שנייה", widget: string }
+              - { name: price_bullets, label: "מה כלול", widget: list, field: { name: bullet, label: "שורה", widget: string } }
+              - { name: cta, label: "כפתור", widget: string }
+              - { name: small, label: "הערה מתחת לכפתור", widget: string }
+          - name: faq
+            label: שאלות נפוצות
+            widget: object
+            hint: "השאלות נכנסות אוטומטית גם לנתונים המובנים של גוגל (FAQ)."
+            fields:
+              - { name: title, label: "כותרת", widget: string }
+              - name: items
+                label: שאלות
+                label_singular: שאלה
+                widget: list
+                summary: "{{q}}"
+                fields:
+                  - { name: q, label: "שאלה", widget: string }
+                  - { name: a, label: "תשובה", widget: text, hint: "קישור כותבים כך: [הטקסט](https://כתובת). לקישור לווטסאפ של התמיכה: [הטקסט]({whatsapp})." }
+              - { name: more_text, label: "טקסט לפני הקישור למדריך", widget: string }
+              - { name: more_link, label: "טקסט הקישור למדריך", widget: string }
+          - name: footer
+            label: תחתית העמוד
+            widget: object
+            fields:
+              - { name: tagline, label: "שורת תיאור", widget: string }
+              - { name: copyright, label: "שורת זכויות", widget: string }
+
+      # ------------------------------------------------------------ עמוד המדריך
+      - name: guide
+        label: "עמוד המדריך: ניהול תלמידי נהיגה"
+        file: content/guide.json
+        fields:
+          - name: seo
+            label: "SEO של המדריך"
+            widget: object
+            fields:
+              - { name: title, label: "כותרת העמוד בגוגל (Title)", widget: string, hint: "מומלץ עד 60 תווים." }
+              - { name: description, label: "תיאור העמוד בגוגל (Meta Description)", widget: text, hint: "מומלץ 120 עד 160 תווים." }
+              - { name: og_title, label: "כותרת בשיתוף", widget: string }
+              - { name: og_description, label: "תיאור בשיתוף", widget: text }
+          - { name: h1, label: "כותרת H1", widget: string }
+          - { name: breadcrumb, label: "שם קצר בפירורי הלחם", widget: string }
+          - { name: author, label: "מאת", widget: string }
+          - { name: published, label: "תאריך פרסום", widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+          - { name: updated, label: "תאריך עדכון אחרון", widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, hint: "לעדכן בכל שינוי בתוכן. מוצג בעמוד ונשלח לגוגל." }
+          - { name: intro, label: "פסקת פתיחה", widget: text }
+          - name: sections
+            label: פרקים
+            label_singular: פרק
+            widget: list
+            summary: "{{heading}}"
+            fields:
+              - { name: id, label: "מזהה לקישור (באנגלית)", widget: string, pattern: ["^[a-z][a-z0-9-]*$", "אותיות קטנות באנגלית, ספרות ומקף"] }
+              - { name: heading, label: "כותרת הפרק (H2), עדיף כשאלה", widget: string }
+              - { name: body, label: "תוכן", widget: text, hint: "שורה ריקה בין פסקאות. רשימה: כל שורה מתחילה במקף ורווח. הדגשה: **טקסט**. קישור: [טקסט](כתובת)." }
+              - { name: lotam, label: "מסגרת 'בלוטם:' (לא חובה)", widget: text, required: false }
+          - name: cta
+            label: קריאה לפעולה בסוף המדריך
+            widget: object
+            fields:
+              - { name: title, label: "כותרת", widget: string }
+              - { name: text, label: "טקסט", widget: text }
+              - { name: button, label: "כפתור", widget: string }
+              - { name: secondary, label: "קישור משני", widget: string }
