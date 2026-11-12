@@ -202,11 +202,50 @@ collections:
                 fields:
                   - { name: title, label: "כותרת", widget: string }
                   - { name: text, label: "טקסט", widget: string }
-              - { name: price_line1, label: "מחיר: שורה ראשונה (בטורקיז)", widget: string }
-              - { name: price_line2, label: "מחיר: שורה שנייה", widget: string }
-              - { name: price_bullets, label: "מה כלול", widget: list, field: { name: bullet, label: "שורה", widget: string } }
-              - { name: cta, label: "כפתור", widget: string }
               - { name: small, label: "הערה מתחת לכפתור", widget: string }
+          - name: pricing
+            label: "מחיר"
+            widget: object
+            hint: "המחיר החודשי לנתונים של גוגל נמצא בהגדרות האתר. אם משנים כאן, לעדכן גם שם."
+            fields:
+              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
+              - { name: title, label: "כותרת", widget: string }
+              - { name: intro, label: "פסקת פתיחה", widget: text }
+              - name: trial
+                label: "כרטיס ימני: ניסיון חינם"
+                widget: object
+                fields:
+                  - { name: name, label: "שם", widget: string }
+                  - { name: amount, label: "מחיר (מספר בלבד)", widget: string, pattern: ["^[0-9]+(\\.[0-9]{1,2})?$", "מספר בלבד, למשל 89"] }
+                  - { name: per, label: "ליד המחיר", widget: string }
+                  - { name: desc, label: "תיאור", widget: text }
+                  - { name: items, label: "מה כלול", widget: list, field: { name: item, label: "שורה", widget: string } }
+                  - { name: button, label: "כפתור", widget: string }
+              - name: main
+                label: "כרטיס אמצעי, מודגש: המנוי"
+                widget: object
+                fields:
+                  - { name: name, label: "שם", widget: string }
+                  - { name: badge, label: "תגית", widget: string }
+                  - { name: amount, label: "מחיר (מספר בלבד)", widget: string, pattern: ["^[0-9]+(\\.[0-9]{1,2})?$", "מספר בלבד, למשל 89"] }
+                  - { name: per, label: "ליד המחיר", widget: string }
+                  - { name: desc, label: "תיאור", widget: text }
+                  - { name: items, label: "מה כלול", widget: list, field: { name: item, label: "שורה", widget: string } }
+                  - { name: button, label: "כפתור", widget: string }
+              - name: extra
+                label: "כרטיס שמאלי: מכשיר נוסף"
+                widget: object
+                fields:
+                  - { name: name, label: "שם", widget: string }
+                  - { name: amount, label: "מחיר (מספר בלבד)", widget: string, pattern: ["^[0-9]+(\\.[0-9]{1,2})?$", "מספר בלבד, למשל 89"] }
+                  - { name: per, label: "ליד המחיר", widget: string }
+                  - { name: desc, label: "תיאור", widget: text }
+                  - { name: items, label: "מה כלול", widget: list, field: { name: item, label: "שורה", widget: string } }
+                  - { name: button, label: "כפתור", widget: string }
+              - { name: note, label: "הערה מתחת לכרטיסים", widget: string }
+              - { name: close_title, label: "תיבת הסיום: כותרת", widget: string }
+              - { name: close_text, label: "תיבת הסיום: משפט", widget: string }
+              - { name: close_button, label: "תיבת הסיום: כפתור", widget: string }
           - name: faq
             label: שאלות נפוצות
             widget: object
