@@ -397,6 +397,10 @@ body::before,.top{background:var(--blue)}
 /* the promise next to the trial button: a quiet outlined pill on the blue */
 .promise{align-self:flex-start;margin:0;display:inline-flex;align-items:center;min-height:36px;padding:6px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.1);color:#fff;font-weight:700;font-size:16px;line-height:1.3}
 .deal .promise{align-self:center;margin-top:6px}
+/* the opening's trial button carries the promise as a small second line */
+.btn.btn-2line{flex-direction:column;gap:2px;padding:12px 20px;line-height:1.25;text-align:center}
+.btn-2line small{font-size:14px;font-weight:500;opacity:.85}
+@media (min-width:600px){.btn.btn-2line{padding:12px 36px}}
 .join-steps .n{background:var(--blue)}
 .foot{background:var(--ink)} .foot .copy{border-top-color:#253048}
 </style>
@@ -423,9 +427,8 @@ body::before,.top{background:var(--blue)}
       <h2 class="headline" id="hero-title">{{hero.headline}} <span>{{hero.headline_accent}}</span></h2>
       <p class="subtitle">{{hero.subtitle}} <span>{{hero.subtitle_accent}}</span></p>
       <p class="lead">{{hero.lead}}</p>
-      <p class="promise">{{hero.promise}}</p>
       <div class="hero-cta">
-        <a class="btn btn-main btn-trial" href="#price">{{hero.cta}}</a>
+        <a class="btn btn-main btn-trial btn-2line" href="#price"><span>{{hero.cta}}</span><small>{{hero.promise}}</small></a>
         <a class="link-light" href="#tour">{{hero.cta_secondary}}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
         </a>

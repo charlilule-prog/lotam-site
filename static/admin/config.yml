@@ -63,7 +63,7 @@ collections:
               - { name: lead, label: "פסקת הפתיחה", widget: text }
               - { name: cta, label: "כפתור ראשי", widget: string }
               - { name: cta_secondary, label: "קישור משני", widget: string }
-              - { name: promise, label: "תגית ההבטחה (ליד הכפתור בפתיחה ובכרטיס התשלום)", widget: string }
+              - { name: promise, label: "שורת ההבטחה (בתוך הכפתור בפתיחה, ותגית בכרטיס התשלום)", widget: string }
               - { name: pitch, label: "שורה בולטת", widget: string }
               - { name: pitch_accent, label: "סוף השורה הבולטת, באלמוג", widget: string }
               - { name: manage_title, label: "טלפון ימני: כותרת (לנהל)", widget: string }
