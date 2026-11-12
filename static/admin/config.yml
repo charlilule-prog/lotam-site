@@ -103,6 +103,7 @@ collections:
                 summary: "{{title}}"
                 fields:
                   - { name: id, label: "מזהה לקישור (באנגלית, בלי רווחים)", widget: string, pattern: ["^[a-z][a-z0-9-]*$", "אותיות קטנות באנגלית, ספרות ומקף"], hint: "לא לשנות אם לא חייבים: קיצורי הדרך בעמוד מפנים למזהה הזה." }
+                  - { name: highlight, label: "שורה מודגשת מעל הכותרת (לא חובה)", widget: string, required: false, hint: "מופיעה בתגית אלמוג עם אייקון מתנה. ריק = בלי שורה." }
                   - { name: title, label: "כותרת", widget: string }
                   - { name: text, label: "טקסט", widget: text }
                   - { name: bullets, label: "נקודות", widget: list, required: false, field: { name: bullet, label: "נקודה", widget: string } }
