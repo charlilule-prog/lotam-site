@@ -238,9 +238,9 @@ h1.eyebrow{font-family:Heebo, system-ui, sans-serif;line-height:1.4;letter-spaci
 .num{font-family:var(--display);font-weight:800;font-size:15px;color:var(--teal-ink);display:inline-flex;align-items:center;gap:10px}
 .num::after{content:"";width:40px;height:2px;background:currentColor;opacity:.5}
 .step h3{font-weight:800;font-size:clamp(24px, 5.6vw, 32px)}
-.hl{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin:2px 0 0;padding:8px 14px 8px 16px;border-radius:14px;background:var(--coral);color:var(--navy);font-weight:800;font-size:16px;line-height:1.3;box-shadow:0 8px 20px rgba(248,120,96,.3)}
-.hl::before{content:"";flex:none;width:18px;height:18px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='8' width='18' height='5' rx='1'/%3E%3Cpath d='M5 13v8h14v-8M12 8v13M12 8c-1.5-3-5-3.5-5.5-1.5S9 8 12 8zm0 0c1.5-3 5-3.5 5.5-1.5S15 8 12 8z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='8' width='18' height='5' rx='1'/%3E%3Cpath d='M5 13v8h14v-8M12 8v13M12 8c-1.5-3-5-3.5-5.5-1.5S9 8 12 8zm0 0c1.5-3 5-3.5 5.5-1.5S15 8 12 8z'/%3E%3C/svg%3E") center/contain no-repeat}
-.hl:empty{display:none}
+/* small highlight tag above a tour step; ".step" in the selector beats ".step p" */
+.step .hl{align-self:flex-start;display:inline-block;margin:2px 0 0;padding:6px 14px;border-radius:999px;background:var(--blue);color:#fff;font-weight:700;font-size:15px;line-height:1.35}
+.step .hl:empty{display:none}
 .step p{color:var(--muted);font-size:18px}
 .ticks{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
 .ticks li{display:flex;gap:10px;align-items:flex-start}
@@ -362,7 +362,7 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
 /* ================= palette: one strong blue, neutrals around it =================
    blue carries the opening, the header and the offer; everything else is white,
    light grey or ink, with blue for small accents and one warm yellow highlight. */
-:root{--blue:#0a5fd6;--blue-2:#0b6ae6;--on-blue:#dce9ff;--sun:#ffe08a;--sun-btn:#f2c744;--ink:#0d1320;--ink-2:#161e2f;--muted:#4a5568;--line:#e3e8f0;--bg:#f5f7fb;
+:root{--blue:#0a5fd6;--blue-2:#0b6ae6;--on-blue:#dce9ff;--sun:#ffe08a;--powder:#c5d4e8;--sun-btn:#f2c744;--ink:#0d1320;--ink-2:#161e2f;--muted:#4a5568;--line:#e3e8f0;--bg:#f5f7fb;
   --teal-ink:#0a5fd6;--teal-soft:#eaf1fc;--on-navy:#aab4c3;--on-navy-2:#8b97a8}
 :focus-visible{outline-color:var(--blue)}
 .top :focus-visible,.hero :focus-visible,.deal :focus-visible{outline-color:#fff}
@@ -377,10 +377,17 @@ body::before,.top{background:var(--blue)}
 .hero .lead,.pair figcaption span{color:var(--on-blue)}
 .demo-tag,.hero .note{color:var(--on-blue)}
 .f-manage figcaption i{background:#fff} .f-teach figcaption i{background:var(--sun)}
-.hl{background:var(--blue);color:#fff;box-shadow:0 8px 20px -10px rgba(10,95,214,.7)}
 .step:nth-child(even) .m-shot{background:linear-gradient(180deg,#eef0f4,var(--bg))}
 .board{background:var(--teal-soft);color:var(--ink)} .board p{color:var(--muted)} .board .kicker{color:var(--blue)}
-.plus{background:var(--ink)} .plus h2 span{color:var(--sun)} .plus-nums b{color:var(--sun)}
+/* "what else": powder blue, ink text */
+.plus{background:var(--powder);color:var(--ink)}
+.plus::before{background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0))}
+.plus h2 span,.plus-nums b{color:var(--blue)}
+.plus-head p,.plus-nums span{color:#3f4a5c}
+.tile{background:rgba(255,255,255,.5);border-color:rgba(255,255,255,.8)}
+.tile .tl{color:var(--ink)}
+.plus-nums{border-top-color:rgba(13,19,32,.14)}
+@media (min-width:960px){.tile{background:none}.tile .tl{text-shadow:none}.orbit .ring{border-color:rgba(13,19,32,.16)}}
 .deal{background:linear-gradient(160deg,var(--blue-2) 0%,var(--blue) 80%);box-shadow:0 30px 60px -30px rgba(10,95,214,.7)}
 .deal::before{background:radial-gradient(closest-side,rgba(255,224,138,.22),rgba(255,224,138,0))}
 .deal::after{background:radial-gradient(closest-side,rgba(255,255,255,.16),rgba(255,255,255,0))}
