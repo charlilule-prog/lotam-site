@@ -55,24 +55,20 @@ collections:
             label: חלון הפתיחה
             widget: object
             fields:
-              - { name: nav_cta, label: "כפתור בסרגל העליון", widget: string }
+              - { name: nav_cta, label: "כפתור בסרגל העליון (במחשב)", widget: string }
               - { name: h1, label: "כותרת H1 (התגית הקטנה מעל הכותרת)", widget: string, hint: "הכותרת החשובה ביותר ל-SEO. אחת בלבד בעמוד." }
               - { name: headline, label: "כותרת גדולה (H2)", widget: string }
               - { name: headline_accent, label: "סוף הכותרת הגדולה, בטורקיז", widget: string }
               - { name: subtitle, label: "תת-כותרת", widget: string }
               - { name: subtitle_accent, label: "סוף התת-כותרת, בטורקיז", widget: string }
-              - { name: lead, label: "פסקת הפתיחה", widget: text }
               - { name: cta, label: "כפתור ראשי", widget: string }
               - { name: cta_secondary, label: "קישור משני", widget: string }
-              - { name: pitch, label: "שורה בולטת", widget: string }
-              - { name: pitch_accent, label: "סוף השורה הבולטת, באלמוג", widget: string }
               - { name: manage_title, label: "טלפון ימני: כותרת (לנהל)", widget: string }
               - { name: manage_caption, label: "טלפון ימני: משפט קצר מתחת", widget: text, hint: "עד כ-60 תווים, כדי שייכנס מתחת לטלפון." }
               - { name: teach_title, label: "טלפון שמאלי: כותרת (ללמד)", widget: string }
               - { name: teach_caption, label: "טלפון שמאלי: משפט קצר מתחת", widget: text, hint: "עד כ-75 תווים." }
               - { name: manage_alt, label: "תיאור הצילום של לנהל (Alt)", widget: text }
               - { name: teach_alt, label: "תיאור הצילום של ללמד (Alt)", widget: text }
-              - { name: swipe_hint, label: "רמז החלקה בטלפון", widget: string }
           - name: devices
             label: "רצועת המכשירים: מחשב, טאבלט וטלפון"
             widget: object
@@ -87,15 +83,25 @@ collections:
                 fields:
                   - { name: title, label: "תחילת הנקודה, מודגשת", widget: string }
                   - { name: text, label: "המשך הנקודה", widget: string }
-          - name: deal
-            label: "תיבת ההצעה: 90 יום עלינו (אחרי רצועת המכשירים)"
+          - name: how
+            label: "שלוש הפעולות (מיד אחרי הפתיחה)"
             widget: object
             fields:
+              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
               - { name: title, label: "כותרת", widget: string }
-              - { name: title_accent, label: "סוף הכותרת, באלמוג", widget: string }
-              - { name: text, label: "משפט", widget: string }
-              - { name: button, label: "כפתור", widget: string }
-              - { name: small, label: "שורה קטנה מתחת לכפתור", widget: string }
+              - name: steps
+                label: פעולות
+                label_singular: פעולה
+                widget: list
+                summary: "{{title}}"
+                max: 3
+                fields:
+                  - { name: title, label: "כותרת", widget: string }
+                  - { name: text, label: "משפט אחד", widget: string }
+                  - { name: image, label: "תקריב מהאפליקציה (WebP או PNG)", widget: image }
+                  - { name: alt, label: "תיאור התקריב (Alt)", widget: text }
+                  - { name: note, label: "תגית מודגשת מתחת (לא חובה)", widget: string, required: false }
+                  - { name: note_small, label: "שורה קטנה מתחת לתגית (לא חובה)", widget: string, required: false }
           - name: tour
             label: הסיור במסכים
             widget: object
@@ -183,11 +189,22 @@ collections:
                 fields:
                   - { name: num, label: "מספר", widget: string }
                   - { name: label, label: "הסבר", widget: string }
-          - name: join
-            label: הצטרפות ומחיר
+          - name: pricing
+            label: "ההצעה: ניסיון חינם ומחיר (כרטיס אחד)"
             widget: object
+            hint: "המחיר החודשי לנתונים של גוגל נמצא בהגדרות האתר. אם משנים כאן, לעדכן גם שם."
             fields:
               - { name: kicker, label: "תגית מעל הכותרת", widget: string }
+              - { name: title, label: "כותרת", widget: string }
+              - { name: title_accent, label: "סוף הכותרת, באלמוג", widget: string }
+              - { name: text, label: "שורת המחיר", widget: string }
+              - { name: items, label: "מה כלול", widget: list, field: { name: item, label: "שורה", widget: string } }
+              - { name: button, label: "כפתור", widget: string }
+              - { name: fine, label: "הבהרה ליד הכפתור (אשראי ותשלום)", widget: text, hint: "לכתוב רק מה שקורה בפועל." }
+          - name: join
+            label: "צעדי ההצטרפות (מתחת להצעה)"
+            widget: object
+            fields:
               - { name: title, label: "כותרת", widget: string }
               - name: steps
                 label: צעדי ההצטרפות
@@ -197,46 +214,6 @@ collections:
                 fields:
                   - { name: title, label: "כותרת", widget: string }
                   - { name: text, label: "טקסט", widget: string }
-          - name: pricing
-            label: "מחיר"
-            widget: object
-            hint: "המחיר החודשי לנתונים של גוגל נמצא בהגדרות האתר. אם משנים כאן, לעדכן גם שם."
-            fields:
-              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
-              - { name: title, label: "כותרת", widget: string }
-              - { name: intro, label: "פסקת פתיחה", widget: text }
-              - name: trial
-                label: "כרטיס ימני: ניסיון חינם"
-                widget: object
-                fields:
-                  - { name: name, label: "שם", widget: string }
-                  - { name: amount, label: "מחיר (מספר בלבד)", widget: string, pattern: ["^[0-9]+(\\.[0-9]{1,2})?$", "מספר בלבד, למשל 89"] }
-                  - { name: per, label: "ליד המחיר", widget: string }
-                  - { name: desc, label: "תיאור", widget: text }
-                  - { name: items, label: "מה כלול", widget: list, field: { name: item, label: "שורה", widget: string } }
-                  - { name: button, label: "כפתור", widget: string }
-              - name: main
-                label: "כרטיס אמצעי, מודגש: המנוי"
-                widget: object
-                fields:
-                  - { name: name, label: "שם", widget: string }
-                  - { name: badge, label: "תגית", widget: string }
-                  - { name: amount, label: "מחיר (מספר בלבד)", widget: string, pattern: ["^[0-9]+(\\.[0-9]{1,2})?$", "מספר בלבד, למשל 89"] }
-                  - { name: per, label: "ליד המחיר", widget: string }
-                  - { name: desc, label: "תיאור", widget: text }
-                  - { name: items, label: "מה כלול", widget: list, field: { name: item, label: "שורה", widget: string } }
-                  - { name: button, label: "כפתור", widget: string }
-              - name: extra
-                label: "כרטיס שמאלי: מכשיר נוסף"
-                widget: object
-                fields:
-                  - { name: name, label: "שם", widget: string }
-                  - { name: amount, label: "מחיר (מספר בלבד)", widget: string, pattern: ["^[0-9]+(\\.[0-9]{1,2})?$", "מספר בלבד, למשל 89"] }
-                  - { name: per, label: "ליד המחיר", widget: string }
-                  - { name: desc, label: "תיאור", widget: text }
-                  - { name: items, label: "מה כלול", widget: list, field: { name: item, label: "שורה", widget: string } }
-                  - { name: button, label: "כפתור", widget: string }
-              - { name: note, label: "הערה מתחת לכרטיסים", widget: string }
           - name: faq
             label: שאלות נפוצות
             widget: object

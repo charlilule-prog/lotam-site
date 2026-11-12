@@ -107,6 +107,7 @@ const ld = (graph) => JSON.stringify({ "@context": "https://schema.org", "@graph
 
 /* ---------- home ---------- */
 const homeData = { ...home, site,
+  how: { ...home.how, steps: home.how.steps.map(withSize) },
   tour: { ...home.tour, steps: home.tour.steps.map(withSize) },
   plus: { ...home.plus, orbit: home.plus.orbit.map((o) => ({ ...o, color: safeColor(o.color), icon_svg: iconSvg(o.icon) })) },
   faq: { ...home.faq, items: home.faq.items.map((x) => ({ ...x, a_html: inline(x.a) })) },
@@ -116,7 +117,7 @@ const homeData = { ...home, site,
     { "@type": "SoftwareApplication", "@id": site.url + "#app", name: site.name, description: home.seo.description, url: site.url, image: site.url + "img/og.png",
       applicationCategory: "BusinessApplication", operatingSystem: "Web", inLanguage: "he-IL", audience: { "@type": "Audience", audienceType: "מורי נהיגה" },
       featureList: site.features,
-      offers: { "@type": "Offer", price: site.offer_price, priceCurrency: "ILS", description: site.offer_description, url: site.url + "#join" },
+      offers: { "@type": "Offer", price: site.offer_price, priceCurrency: "ILS", description: site.offer_description, url: site.url + "#price" },
       publisher: { "@id": site.url + "#org" } },
     { "@type": "FAQPage", "@id": site.url + "#faq", inLanguage: "he-IL", mainEntity: home.faq.items.map((x) => ({ "@type": "Question", name: x.q, acceptedAnswer: { "@type": "Answer", text: plain(x.a) } })) },
   ]),
