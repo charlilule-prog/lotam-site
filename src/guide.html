@@ -67,12 +67,20 @@ article p a,article li a{padding-block:9px;-webkit-box-decoration-break:clone;bo
 .foot .wrap{max-width:1200px;padding-block:24px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:center}
 .foot a{color:var(--white);display:inline-flex;align-items:center;min-height:44px}
 .foot-links{display:flex;flex-wrap:wrap;gap:0 20px}
+/* palette, same as the home page: one blue for the header and the call to action, neutrals, ink footer */
+:root{--blue:#0a5fd6;--on-blue:#dce9ff;--sun:#ffe08a;--sun-btn:#f2c744;--ink:#0d1320;--muted:#4a5568;--line:#e3e8f0;--bg:#f5f7fb;--teal-ink:#0a5fd6;--teal-soft:#eaf1fc;--on-navy:#aab4c3}
+:focus-visible{outline-color:var(--blue)}
+.top{background:var(--blue);border-bottom:0}
+.top :focus-visible,.cta :focus-visible{outline-color:#fff}
+.btn{background:var(--sun-btn);color:var(--ink);border-radius:10px;font-weight:600}
+.btn:hover{background:#f6d364}
+.cta{background:var(--blue)} .cta p{color:var(--on-blue)}
+.foot{background:var(--ink)}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="brand" href="../" aria-label="לוטם – לעמוד הראשי"><img src="../img/logo-320.webp" alt="לוטם" width="320" height="104"></a>
-  <a class="btn" href="../#join">90 ימים חינם</a>
+  <a class="brand" href="../" aria-label="לוטם – לעמוד הראשי"><img src="../img/logo-light-320.webp" alt="לוטם" width="320" height="104"></a>
 </div></header>
 <main>
 <nav class="crumbs wrap" aria-label="מיקום באתר"><ol><li><a href="../">לוטם</a></li><li aria-current="page">{{breadcrumb}}</li></ol></nav>
@@ -86,7 +94,7 @@ article p a,article li a{padding-block:9px;-webkit-box-decoration-break:clone;bo
   <div class="cta">
     <h2>{{cta.title}}</h2>
     <p>{{cta.text}}</p>
-    <a class="btn" href="../#join">{{cta.button}}</a>
+    <a class="btn" href="../#price">{{cta.button}}</a>
     <a class="more" href="../#tour">{{cta.secondary}}</a>
   </div>
 </article>
