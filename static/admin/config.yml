@@ -95,7 +95,6 @@ collections:
               - { name: title_accent, label: "סוף הכותרת, באלמוג", widget: string }
               - { name: text, label: "משפט", widget: string }
               - { name: button, label: "כפתור", widget: string }
-              - { name: small, label: "שורה קטנה מתחת לכפתור", widget: string }
           - name: tour
             label: הסיור במסכים
             widget: object
@@ -238,9 +237,6 @@ collections:
                   - { name: items, label: "מה כלול", widget: list, field: { name: item, label: "שורה", widget: string } }
                   - { name: button, label: "כפתור", widget: string }
               - { name: note, label: "הערה מתחת לכרטיסים", widget: string }
-              - { name: close_title, label: "תיבת הסיום: כותרת", widget: string }
-              - { name: close_text, label: "תיבת הסיום: משפט", widget: string }
-              - { name: close_button, label: "תיבת הסיום: כפתור", widget: string }
           - name: faq
             label: שאלות נפוצות
             widget: object
