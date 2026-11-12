@@ -95,6 +95,7 @@ collections:
               - { name: title_accent, label: "סוף הכותרת, באלמוג", widget: string }
               - { name: text, label: "משפט", widget: string }
               - { name: button, label: "כפתור", widget: string }
+              - { name: small, label: "שורה קטנה מתחת לכפתור", widget: string }
           - name: tour
             label: הסיור במסכים
             widget: object
@@ -196,7 +197,6 @@ collections:
                 fields:
                   - { name: title, label: "כותרת", widget: string }
                   - { name: text, label: "טקסט", widget: string }
-              - { name: small, label: "הערה מתחת לכפתור", widget: string }
           - name: pricing
             label: "מחיר"
             widget: object
