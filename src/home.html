@@ -394,6 +394,9 @@ body::before,.top{background:var(--blue)}
 .deal-title span{color:var(--sun)}
 .deal-kicker,.deal-items svg{color:var(--sun)}
 .deal-small{color:var(--on-blue)}
+/* the promise next to the trial button: a quiet outlined pill on the blue */
+.promise{align-self:flex-start;margin:0;display:inline-flex;align-items:center;min-height:36px;padding:6px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.1);color:#fff;font-weight:700;font-size:16px;line-height:1.3}
+.deal .promise{align-self:center;margin-top:6px}
 .join-steps .n{background:var(--blue)}
 .foot{background:var(--ink)} .foot .copy{border-top-color:#253048}
 </style>
@@ -420,6 +423,7 @@ body::before,.top{background:var(--blue)}
       <h2 class="headline" id="hero-title">{{hero.headline}} <span>{{hero.headline_accent}}</span></h2>
       <p class="subtitle">{{hero.subtitle}} <span>{{hero.subtitle_accent}}</span></p>
       <p class="lead">{{hero.lead}}</p>
+      <p class="promise">{{hero.promise}}</p>
       <div class="hero-cta">
         <a class="btn btn-main btn-trial" href="#price">{{hero.cta}}</a>
         <a class="link-light" href="#tour">{{hero.cta_secondary}}
@@ -550,6 +554,7 @@ body::before,.top{background:var(--blue)}
       <ul class="deal-items">
 {{#each pricing.items}}        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.2l2.7 2.7L16 9.6"/></svg><span>{{this}}</span></li>
 {{/each}}      </ul>
+      <p class="promise">{{hero.promise}}</p>
       <a class="btn btn-main btn-trial deal-btn" href="{{site.app_url}}" rel="noopener">{{pricing.button}}</a>
       <p class="deal-small">{{pricing.fine}}</p>
     </div>
