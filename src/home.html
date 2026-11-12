@@ -71,16 +71,17 @@ p{margin:0}
 .link-arrow:hover{text-decoration:underline}
 
 /* header */
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:21;background:var(--white)}
-.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:21;background:var(--navy)}
+/* the header shares the hero colour, with the white logo, like one block */
+.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:var(--navy)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:72px}
 .brand{display:flex;align-items:center;min-height:44px}
-.brand img{width:112px}
+.brand img{width:136px}
 .nav{display:flex;align-items:center;gap:4px}
-.nav a.nl{display:none;color:var(--ink);text-decoration:none;font-weight:500;padding:10px 12px;border-radius:10px;min-height:44px;align-items:center}
-.nav a.nl:hover{background:var(--bg)}
+.nav a.nl{display:none;color:var(--white);text-decoration:none;font-weight:500;padding:10px 12px;border-radius:10px;min-height:44px;align-items:center}
+.nav a.nl:hover{background:var(--navy-2)}
 .nav .btn{min-height:44px;font-size:16px;padding:8px 16px;border-radius:12px;box-shadow:none}
-@media (min-width:820px){.nav a.nl{display:inline-flex}.brand img{width:128px}.nav{gap:8px}}
+@media (min-width:820px){.nav a.nl{display:inline-flex}.brand img{width:156px}.nav{gap:8px}}
 
 /* hero */
 .hero{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
@@ -360,6 +361,40 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
 .viewer img{max-height:calc(94vh - 72px);width:auto;max-width:100%;aspect-ratio:390/844;border-radius:22px;background:var(--white)}
 .viewer .close{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:10px 20px;border-radius:14px;border:0;background:var(--white);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
 .viewer-cap{color:#dbe6f2;font-size:14px}
+/* ================= palette: one strong blue, neutrals around it =================
+   blue carries the opening, the header and the offer; everything else is white,
+   light grey or ink, with blue for small accents and one warm yellow highlight. */
+:root{--blue:#0a5fd6;--blue-2:#0b6ae6;--on-blue:#dce9ff;--sun:#ffe08a;--ink:#0d1320;--ink-2:#161e2f;--muted:#4a5568;--line:#e3e8f0;--bg:#f5f7fb;
+  --teal-ink:#0a5fd6;--teal-soft:#eaf1fc;--on-navy:#aab4c3;--on-navy-2:#8b97a8}
+:focus-visible{outline-color:var(--blue)}
+.top :focus-visible,.hero :focus-visible,.deal :focus-visible{outline-color:#fff}
+body::before,.top{background:var(--blue)}
+.nav a.nl:hover{background:rgba(255,255,255,.14)}
+.btn-main{background:#fff;color:var(--blue);box-shadow:0 10px 24px -10px rgba(0,20,60,.45)}
+.btn-main:hover{background:#eef4ff}
+.btn-trial{box-shadow:0 14px 30px -12px rgba(0,20,60,.55)}
+.btn-trial:hover{box-shadow:0 18px 34px -12px rgba(0,20,60,.6)}
+.btn-trial .gift{background:rgba(10,95,214,.1)}
+.nav .btn{border-radius:999px}
+.hero{background:linear-gradient(180deg,var(--blue) 0%,var(--blue-2) 100%)}
+.hero::before{background:radial-gradient(closest-side,rgba(255,255,255,.14),rgba(255,255,255,0))}
+.eyebrow{background:rgba(255,255,255,.14);color:#fff}
+.hero .headline span,.hero .subtitle span,.pitch-line span{color:var(--sun)}
+.hero .lead,.pair figcaption span{color:var(--on-blue)}
+.demo-tag,.hero .note{color:var(--on-blue)}
+.f-manage figcaption i{background:#fff} .f-teach figcaption i{background:var(--sun)}
+.hl{background:var(--blue);color:#fff;box-shadow:0 8px 20px -10px rgba(10,95,214,.7)}
+.step:nth-child(even) .m-shot{background:linear-gradient(180deg,#eef0f4,var(--bg))}
+.board{background:var(--teal-soft);color:var(--ink)} .board p{color:var(--muted)} .board .kicker{color:var(--blue)}
+.plus{background:var(--ink)} .plus h2 span{color:var(--sun)} .plus-nums b{color:var(--sun)}
+.deal{background:linear-gradient(160deg,var(--blue-2) 0%,var(--blue) 80%);box-shadow:0 30px 60px -30px rgba(10,95,214,.7)}
+.deal::before{background:radial-gradient(closest-side,rgba(255,224,138,.22),rgba(255,224,138,0))}
+.deal::after{background:radial-gradient(closest-side,rgba(255,255,255,.16),rgba(255,255,255,0))}
+.deal-title span{color:var(--sun)}
+.deal-kicker,.deal-items svg{color:var(--sun)}
+.deal-small{color:var(--on-blue)}
+.join-steps .n{background:var(--blue)}
+.foot{background:var(--ink)} .foot .copy{border-top-color:#253048}
 </style>
 </head>
 <body>
@@ -367,7 +402,7 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="לוטם – לראש העמוד"><img src="img/logo-320.webp" alt="לוטם" width="320" height="104"></a>
+    <a class="brand" href="#top" aria-label="לוטם – לראש העמוד"><img src="img/logo-light-320.webp" alt="לוטם" width="320" height="104"></a>
     <nav class="nav" aria-label="ראשי">
       <a class="nl" href="#tour">הסיור</a>
       <a class="nl" href="#price">מחיר והצטרפות</a>
@@ -423,7 +458,7 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
         <rect x="80" y="2" width="26" height="17" rx="3" fill="#f87860" stroke="#002a4c" stroke-width="2"/>
         <text x="93" y="15.5" text-anchor="middle" font-family="Rubik, Heebo, sans-serif" font-weight="800" font-size="14" fill="#ffffff">ל</text>
         <rect x="90" y="19" width="6" height="4" fill="#002a4c"/>
-        <path d="M10 64V50q0-7 7-8.5l26-5L60 22q3-3 8-3h44q6 0 10 5l12 13 13 3q7 2 7 9v15q0 3-3 3h-13a14 14 0 0 0-28 0H55a14 14 0 0 0-28 0H13q-3 0-3-3z" fill="#4fd1c7" stroke="#002a4c" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M10 64V50q0-7 7-8.5l26-5L60 22q3-3 8-3h44q6 0 10 5l12 13 13 3q7 2 7 9v15q0 3-3 3h-13a14 14 0 0 0-28 0H55a14 14 0 0 0-28 0H13q-3 0-3-3z" fill="#0a5fd6" stroke="#0d1320" stroke-width="2.5" stroke-linejoin="round"/>
         <path d="M49 37l14-13q2-1.5 5-1.5h15V37z" fill="#0f3c63"/>
         <path d="M89 22.5h20q4 0 7 3.5l10 11H89z" fill="#0f3c63"/>
         <path d="M86 40v20" stroke="#002a4c" stroke-width="2" opacity=".35"/>
