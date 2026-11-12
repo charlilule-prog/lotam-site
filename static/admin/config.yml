@@ -55,7 +55,6 @@ collections:
             label: חלון הפתיחה
             widget: object
             fields:
-              - { name: nav_cta, label: "כפתור בסרגל העליון", widget: string }
               - { name: h1, label: "כותרת H1 (התגית הקטנה מעל הכותרת)", widget: string, hint: "הכותרת החשובה ביותר ל-SEO. אחת בלבד בעמוד." }
               - { name: headline, label: "כותרת גדולה (H2)", widget: string }
               - { name: headline_accent, label: "סוף הכותרת הגדולה, בטורקיז", widget: string }
