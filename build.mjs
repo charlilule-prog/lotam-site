@@ -8,6 +8,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 const read = (p) => readFileSync(join(root, p), "utf8");
 const json = (p) => JSON.parse(read(p));
 const site = json("content/settings.json"), home = json("content/home.json"), guide = json("content/guide.json");
+const pages = [json("content/accessibility.json"), json("content/privacy.json")];
 if (!site.url.endsWith("/")) site.url += "/";
 const GUIDE_PATH = "nihul-talmidey-nehiga/";
 
@@ -120,6 +121,19 @@ cpSync(join(root, "static"), dist, { recursive: true });
 writeFileSync(join(dist, "index.html"), noRobotsDup(render(read("src/home.html"), [{ item: homeData, index: 0 }])));
 writeFileSync(join(dist, GUIDE_PATH, "index.html"), noRobotsDup(render(read("src/guide.html"), [{ item: guideData, index: 0 }])));
 
+/* ---------- plain content pages: accessibility statement, privacy policy ---------- */
+for (const pg of pages) {
+  const url = site.url + pg.slug + "/";
+  const data = { ...pg, site, verification, updated_he: heDate(pg.updated),
+    sections: pg.sections.map((x) => ({ ...x, body_html: blocks(x.body) })),
+    jsonld: ld([
+      { "@type": "WebPage", "@id": url, url, name: pg.h1, description: pg.seo.description, inLanguage: "he-IL", dateModified: iso(pg.updated), isPartOf: { "@id": site.url + "#site" }, publisher: { "@id": site.url + "#org" } },
+      { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: site.name, item: site.url }, { "@type": "ListItem", position: 2, name: pg.breadcrumb, item: url }] },
+    ]) };
+  mkdirSync(join(dist, pg.slug), { recursive: true });
+  writeFileSync(join(dist, pg.slug, "index.html"), noRobotsDup(render(read("src/page.html"), [{ item: data, index: 0 }])));
+}
+
 const SEARCH_BOTS = ["Googlebot", "Bingbot", "OAI-SearchBot", "PerplexityBot", "Claude-SearchBot"];
 const group = (bot, rules) => `User-agent: ${bot}\n${rules}`;
 writeFileSync(join(dist, "robots.txt"), site.indexing
@@ -131,5 +145,5 @@ writeFileSync(join(dist, "robots.txt"), site.indexing
 const headers = read("static/_headers");
 writeFileSync(join(dist, "_headers"), site.indexing ? headers : headers.replace("\n/*\n", "\n/*\n  X-Robots-Tag: noindex, nofollow\n"));
 const today = new Date().toISOString().slice(0, 10);
-writeFileSync(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n<url><loc>${site.url}</loc><lastmod>${today}</lastmod></url>\n<url><loc>${guideUrl}</loc><lastmod>${iso(guide.updated)}</lastmod></url>\n</urlset>\n`);
+writeFileSync(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n<url><loc>${site.url}</loc><lastmod>${today}</lastmod></url>\n<url><loc>${guideUrl}</loc><lastmod>${iso(guide.updated)}</lastmod></url>\n${pages.map((pg) => `<url><loc>${site.url}${pg.slug}/</loc><lastmod>${iso(pg.updated)}</lastmod></url>\n`).join("")}</urlset>\n`);
 console.log(`built dist/ (${site.indexing ? "open to search engines" : "hidden from search engines"})`);
