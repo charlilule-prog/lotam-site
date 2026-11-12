@@ -181,34 +181,33 @@ h1.eyebrow{font-family:Heebo, system-ui, sans-serif;line-height:1.4;letter-spaci
 .pitch-line{font-family:var(--display);font-weight:800;font-size:clamp(20px, 5.2vw, 26px);line-height:1.3;color:var(--white)}
 .pitch-line span{color:var(--coral)}
 .pair-wrap{min-width:0;width:100%}
-/* phones first: the two screens sit side by side in a swipe row */
+/* phones first: the two phones overlap and tilt, both in view at once */
 .hero .wrap > *{min-width:0}
-.pair{display:flex;justify-content:flex-start;align-items:flex-start;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
-  margin-inline:calc(-1*max(var(--gutter), env(safe-area-inset-left, 0px)));padding:8px max(var(--gutter), env(safe-area-inset-left, 0px)) 4px}
-.pair::-webkit-scrollbar{display:none}
-.pair figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:18px;scroll-snap-align:center;flex:none}
-.pair .phone{--w:min(80vw,320px);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
-.pair figcaption{text-align:center;max-width:min(80vw,320px)}
-.pair figcaption i{display:inline-block;width:28px;height:3px;border-radius:2px;margin-bottom:8px}
+.pair{display:flex;justify-content:center;align-items:flex-start;padding:16px 0 8px}
+.pair figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;flex:none;position:relative}
+.pair .phone{--w:min(47vw,220px);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.pair .f-manage{z-index:1}
+.pair .f-manage .phone{transform:rotate(7deg)}
+.pair .f-teach{z-index:2;margin-inline-start:max(-11vw,-50px);margin-top:64px}
+.pair .f-teach .phone{transform:rotate(-7deg)}
+.pair figcaption{text-align:center;max-width:min(30vw,170px)}
+.pair figcaption i{display:inline-block;width:28px;height:3px;border-radius:2px;margin-bottom:6px}
 .f-manage figcaption i{background:var(--teal)} .f-teach figcaption i{background:var(--coral)}
-.pair figcaption b{display:block;font:800 22px var(--display);color:var(--white)}
-.pair figcaption span{display:block;color:var(--on-navy);font-size:15px;line-height:1.45;margin-top:4px}
+.pair figcaption b{display:block;font:800 19px var(--display);color:var(--white)}
+.pair figcaption span{display:none}
 .demo-tag{display:block;text-align:center;font-size:13px;color:var(--on-navy-2);margin-top:14px}
-.swipe{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;color:var(--on-navy-2);font-size:14px}
-.swipe .d{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);transition:width .3s,background .3s}
-.swipe .d.on{width:22px;border-radius:5px;background:var(--teal)}
-.swipe .d.on.t{background:var(--coral)}
-/* wide screens: both phones in view, tilted toward each other */
+/* wide screens: both phones side by side, turned toward each other */
 @media (min-width:960px){
-  .pair{justify-content:center;gap:clamp(14px,4vw,40px);overflow:visible;scroll-snap-type:none;perspective:1800px;margin-inline:0;padding:0}
-  .pair figure{flex:initial}
+  .pair{gap:clamp(14px,4vw,40px);perspective:1800px;padding:0}
+  .pair figure{gap:18px}
   .pair .phone{--w:250px}
   .pair .f-manage .phone{transform:rotateY(10deg) rotateZ(1.5deg)}
-  .pair .f-teach{margin-top:64px}
+  .pair .f-teach{margin-inline-start:0}
   .pair .f-teach .phone{transform:rotateY(-10deg) rotateZ(-1.5deg)}
   .pair figure:hover .phone{transform:none}
   .pair figcaption{max-width:260px}
-  .swipe{display:none}
+  .pair figcaption b{font-size:22px}
+  .pair figcaption span{display:block;color:var(--on-navy);font-size:15px;line-height:1.45;margin-top:4px}
 }
 @media (min-width:960px){
   .hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;padding-block:72px 88px;gap:40px}
@@ -399,7 +398,6 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
         <figure class="f-manage"><div class="phone"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="img/calendar-full.webp" width="780" height="1688" alt="{{hero.manage_alt}}" decoding="async"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div><figcaption><i></i><b>{{hero.manage_title}}</b><span>{{hero.manage_caption}}</span></figcaption></figure>
         <figure class="f-teach"><div class="phone"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="img/tasks-full.webp" width="780" height="1688" alt="{{hero.teach_alt}}" decoding="async"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div><figcaption><i></i><b>{{hero.teach_title}}</b><span>{{hero.teach_caption}}</span></figcaption></figure>
       </div>
-      <div class="swipe" aria-hidden="true"><span class="d on m"></span><span class="d t"></span><span>{{hero.swipe_hint}}</span></div>
     </div>
   </div>
 </section>
@@ -579,9 +577,6 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
       io.observe(lane);
     } else go();
   }
-  // phone: the dots under the swipeable pair follow the scroll position
-  var pair=document.querySelector('.pair'),sd=document.querySelectorAll('.swipe .d');
-  if(pair&&sd.length===2){pair.addEventListener('scroll',function(){var far=Math.abs(pair.scrollLeft)>pair.clientWidth*0.35;sd[0].classList.toggle('on',!far);sd[1].classList.toggle('on',far);},{passive:true});}
   // desktop tour: the pinned phone shows the screen of the step in the middle of the view
   var steps=[].slice.call(document.querySelectorAll('.step')),scr=[].slice.call(document.querySelectorAll('.t-sticky .scr > img')),dots=[].slice.call(document.querySelectorAll('.dots li'));
   var show=function(i){steps.forEach(function(x){x.classList.toggle('on',x.dataset.i===i);});scr.forEach(function(x){x.classList.toggle('on',x.dataset.i===i);});dots.forEach(function(x){x.classList.toggle('on',x.dataset.i===i);});};

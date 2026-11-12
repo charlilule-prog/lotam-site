@@ -72,7 +72,6 @@ collections:
               - { name: teach_caption, label: "טלפון שמאלי: משפט קצר מתחת", widget: text, hint: "עד כ-75 תווים." }
               - { name: manage_alt, label: "תיאור הצילום של לנהל (Alt)", widget: text }
               - { name: teach_alt, label: "תיאור הצילום של ללמד (Alt)", widget: text }
-              - { name: swipe_hint, label: "רמז החלקה בטלפון", widget: string }
           - name: devices
             label: "רצועת המכשירים: מחשב, טאבלט וטלפון"
             widget: object
