@@ -109,6 +109,19 @@ h1.eyebrow{font-family:Heebo, system-ui, sans-serif;line-height:1.4;letter-spaci
 .chips a:hover{border-color:var(--teal-ink);color:var(--teal-ink)}
 .chips svg{color:var(--teal-ink)}
 
+/* the offer, shown after the visitor has seen the product */
+.deal-sec{padding-block:40px 8px}
+.deal{position:relative;max-width:820px;margin-inline:auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:34px 22px 26px;border-radius:26px;
+  background:linear-gradient(160deg,#0f3c63 0%,#002a4c 75%);color:var(--white);box-shadow:0 30px 60px -30px rgba(0,30,60,.6);overflow:hidden;isolation:isolate}
+.deal::before{content:"";position:absolute;inset:auto -80px -110px auto;width:300px;height:300px;border-radius:50%;background:radial-gradient(closest-side,rgba(248,120,96,.3),rgba(248,120,96,0));z-index:-1}
+.deal::after{content:"";position:absolute;inset:-120px auto auto -120px;width:320px;height:320px;border-radius:50%;background:radial-gradient(closest-side,rgba(79,209,199,.18),rgba(79,209,199,0));z-index:-1}
+.deal-title{margin:0;font:800 clamp(28px,7vw,40px)/1.15 var(--display);color:var(--white)}
+.deal-title span{color:var(--coral);white-space:nowrap}
+.deal-text{margin:0;color:var(--on-navy);font-size:18px}
+.deal-btn{margin-top:6px}
+.deal-small{margin:0;color:var(--on-navy-2);font-size:14px}
+@media (max-width:599px){.deal-btn{width:100%}}
+
 /* car */
 .drive{padding-top:48px}
 .lane{position:relative;max-width:560px;height:88px;margin-inline:auto;container-type:inline-size;overflow:hidden}
@@ -260,14 +273,6 @@ h1.eyebrow{font-family:Heebo, system-ui, sans-serif;line-height:1.4;letter-spaci
 .board .wrap > *{min-width:0}
 .board .tablet{--w:min(calc(100vw - 2 * var(--gutter)),720px);justify-self:center}
 @media (min-width:960px){.board .wrap{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}.board .tablet{--w:min(100%,720px);transform:perspective(2000px) rotateY(-10deg) rotateX(4deg);transition:transform .8s cubic-bezier(.2,.8,.2,1)}.board .tablet:hover{transform:none}}
-.sms{padding-block:64px 24px;overflow:hidden}
-.sms .wrap{display:grid;gap:24px;align-items:center}
-.sms h2{font-weight:800;font-size:clamp(26px, 6vw, 36px);margin-block:8px 12px}
-.sms p{color:var(--muted);font-size:18px}
-.sms figure{margin:0;display:flex;flex-direction:column;align-items:center}
-.sms .phone{--w:min(92vw,340px)}
-.sms figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;max-width:360px;font-size:14px;color:var(--muted);padding-top:6px}
-@media (min-width:960px){.sms .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.sms{padding-block:88px 40px}}
 
 /* ================= everything else: phone in the middle, capabilities around it ================= */
 .plus{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
@@ -420,7 +425,6 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
         </a>
       </div>
-      <p class="note">{{hero.note}}</p>
       <p class="pitch-line">{{hero.pitch}} <span>{{hero.pitch_accent}}</span></p>
     </div>
     <div class="pair-wrap">
@@ -460,6 +464,17 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
       <div class="laptop"><div class="lid"><img src="img/desktop-calendar.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async"></div><div class="base"></div></div>
       <div class="tablet"><div class="glass"><img src="img/tablet-student.webp" width="1400" height="978" alt="" loading="lazy" decoding="async"></div></div>
       <div class="phone"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="img/calendar-full.webp" width="780" height="1688" alt="" loading="lazy" decoding="async"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="deal-sec" aria-labelledby="deal-title">
+  <div class="wrap">
+    <div class="deal">
+      <h2 class="deal-title" id="deal-title">{{deal.title}} <span>{{deal.title_accent}}</span></h2>
+      <p class="deal-text">{{deal.text}}</p>
+      <a class="btn btn-main btn-trial deal-btn" href="{{site.app_url}}" rel="noopener">{{deal.button}}<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+      <p class="deal-small">{{deal.small}}</p>
     </div>
   </div>
 </section>
@@ -518,16 +533,6 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
     <div class="tablet rise"><div class="glass"><img src="{{board.image}}" width="1400" height="978" alt="{{board.alt}}" loading="lazy" decoding="async"></div></div>
   </div>
 </section>
-
-<section class="sms" id="sms" aria-labelledby="sms-title">
-  <div class="wrap">
-    <div><span class="kicker">{{sms.kicker}}</span><h2 id="sms-title">{{sms.title}}</h2><p>{{sms.text}}</p></div>
-    <figure><div class="phone half"><span class="k k1"></span><span class="k k2"></span><span class="k k3"></span><div class="glass"><div class="scr"><img src="{{sms.image}}" width="{{sms.image_w}}" height="{{sms.image_h}}" loading="lazy" decoding="async" alt="{{sms.alt}}"></div><span class="island" aria-hidden="true"></span></div><span class="sheen" aria-hidden="true"></span></div>
-      <figcaption><span>{{sms.caption}}</span><button class="expand" type="button" data-full="{{sms.full}}" data-title="{{sms.full_title}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>המסך המלא<span class="sr"> – {{sms.sr}}</span></button></figcaption>
-    </figure>
-  </div>
-</section>
-
 <section class="plus" id="plus" aria-labelledby="plus-title">
   <div class="wrap">
     <div class="plus-head">

@@ -108,7 +108,6 @@ const ld = (graph) => JSON.stringify({ "@context": "https://schema.org", "@graph
 /* ---------- home ---------- */
 const homeData = { ...home, site,
   tour: { ...home.tour, steps: home.tour.steps.map(withSize) },
-  sms: withSize(home.sms),
   plus: { ...home.plus, orbit: home.plus.orbit.map((o) => ({ ...o, color: safeColor(o.color), icon_svg: iconSvg(o.icon) })) },
   faq: { ...home.faq, items: home.faq.items.map((x) => ({ ...x, a_html: inline(x.a) })) },
   verification,

@@ -64,7 +64,6 @@ collections:
               - { name: lead, label: "פסקת הפתיחה", widget: text }
               - { name: cta, label: "כפתור ראשי", widget: string }
               - { name: cta_secondary, label: "קישור משני", widget: string }
-              - { name: note, label: "שורת המחיר מתחת לכפתור", widget: string }
               - { name: pitch, label: "שורה בולטת", widget: string }
               - { name: pitch_accent, label: "סוף השורה הבולטת, באלמוג", widget: string }
               - { name: manage_title, label: "טלפון ימני: כותרת (לנהל)", widget: string }
@@ -89,6 +88,15 @@ collections:
                 fields:
                   - { name: title, label: "תחילת הנקודה, מודגשת", widget: string }
                   - { name: text, label: "המשך הנקודה", widget: string }
+          - name: deal
+            label: "תיבת ההצעה: 90 יום עלינו (אחרי רצועת המכשירים)"
+            widget: object
+            fields:
+              - { name: title, label: "כותרת", widget: string }
+              - { name: title_accent, label: "סוף הכותרת, באלמוג", widget: string }
+              - { name: text, label: "משפט", widget: string }
+              - { name: button, label: "כפתור", widget: string }
+              - { name: small, label: "שורה קטנה מתחת לכפתור", widget: string }
           - name: tour
             label: הסיור במסכים
             widget: object
@@ -122,19 +130,6 @@ collections:
               - { name: text, label: "טקסט", widget: text }
               - { name: image, label: "צילום מסך טאבלט (WebP או PNG, לרוחב)", widget: image }
               - { name: alt, label: "תיאור הצילום (Alt)", widget: text }
-          - name: sms
-            label: "טסט מהודעת SMS"
-            widget: object
-            fields:
-              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
-              - { name: title, label: "כותרת", widget: string }
-              - { name: text, label: "טקסט", widget: text }
-              - { name: image, label: "צילום ממוקד (WebP או PNG)", widget: image }
-              - { name: alt, label: "תיאור הצילום (Alt)", widget: text }
-              - { name: caption, label: "כיתוב קטן מתחת לצילום", widget: string }
-              - { name: full, label: "המסך המלא (WebP או PNG)", widget: image }
-              - { name: full_title, label: "שם המסך המלא", widget: string }
-              - { name: sr, label: "שם קצר לקוראי מסך", widget: string }
           - name: plus
             label: "הבלוק הכחול: ומה עוד יש בלוטם"
             widget: object
