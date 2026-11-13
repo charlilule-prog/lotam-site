@@ -288,6 +288,14 @@ collections:
         label: מדיניות פרטיות
         file: content/privacy.json
         fields: *legal_fields
+      - name: privacy_app
+        label: מדיניות פרטיות – אפליקציה
+        file: content/privacy-app.json
+        fields: *legal_fields
+      - name: terms
+        label: תנאי שימוש – אפליקציה
+        file: content/terms.json
+        fields: *legal_fields
       - name: about
         label: אודות
         file: content/about.json

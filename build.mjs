@@ -8,7 +8,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 const read = (p) => readFileSync(join(root, p), "utf8");
 const json = (p) => JSON.parse(read(p));
 const site = json("content/settings.json"), home = json("content/home.json"), guide = json("content/guide.json");
-const pages = [json("content/accessibility.json"), json("content/privacy.json"), json("content/about.json")];
+const pages = [json("content/accessibility.json"), json("content/privacy.json"), json("content/about.json"), json("content/privacy-app.json"), json("content/terms.json")];
 if (!site.url.endsWith("/")) site.url += "/";
 const GUIDE_PATH = "nihul-talmidey-nehiga/";
 
