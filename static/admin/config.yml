@@ -288,3 +288,28 @@ collections:
         label: מדיניות פרטיות
         file: content/privacy.json
         fields: *legal_fields
+      - name: about
+        label: אודות
+        file: content/about.json
+        fields:
+          - { name: slug, label: "כתובת העמוד (לא לשנות)", widget: hidden }
+          - { name: show_updated, label: "הצגת תאריך עדכון", widget: hidden }
+          - name: seo
+            label: "SEO"
+            widget: object
+            fields:
+              - { name: title, label: "כותרת העמוד בגוגל (Title)", widget: string }
+              - { name: description, label: "תיאור העמוד בגוגל", widget: text }
+          - { name: h1, label: "כותרת H1", widget: string }
+          - { name: breadcrumb, label: "שם קצר בפירורי הלחם", widget: string }
+          - { name: updated, label: "תאריך עדכון אחרון", widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+          - { name: intro, label: "פסקת פתיחה", widget: text }
+          - name: sections
+            label: פרקים
+            label_singular: פרק
+            widget: list
+            summary: "{{heading}}"
+            fields:
+              - { name: id, label: "מזהה לקישור (באנגלית)", widget: string, pattern: ["^[a-z][a-z0-9-]*$", "אותיות קטנות באנגלית, ספרות ומקף"] }
+              - { name: heading, label: "כותרת הפרק", widget: string }
+              - { name: body, label: "תוכן", widget: text, hint: "שורה ריקה בין פסקאות." }

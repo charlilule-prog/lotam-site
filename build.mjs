@@ -8,7 +8,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 const read = (p) => readFileSync(join(root, p), "utf8");
 const json = (p) => JSON.parse(read(p));
 const site = json("content/settings.json"), home = json("content/home.json"), guide = json("content/guide.json");
-const pages = [json("content/accessibility.json"), json("content/privacy.json")];
+const pages = [json("content/accessibility.json"), json("content/privacy.json"), json("content/about.json")];
 if (!site.url.endsWith("/")) site.url += "/";
 const GUIDE_PATH = "nihul-talmidey-nehiga/";
 
@@ -148,6 +148,7 @@ writeFileSync(join(dist, GUIDE_PATH, "index.html"), noRobotsDup(render(read("src
 for (const pg of pages) {
   const url = site.url + pg.slug + "/";
   const data = { ...pg, site, verification, updated_he: heDate(pg.updated),
+    meta_html: pg.show_updated === false ? "" : `  <p class="meta">עודכן ב־${heDate(pg.updated)}</p>\n`,
     sections: pg.sections.map((x) => ({ ...x, body_html: blocks(x.body) })),
     jsonld: ld([
       { "@type": "WebPage", "@id": url, url, name: pg.h1, description: pg.seo.description, inLanguage: "he-IL", dateModified: iso(pg.updated), isPartOf: { "@id": site.url + "#site" }, publisher: { "@id": site.url + "#org" } },
