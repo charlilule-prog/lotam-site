@@ -428,7 +428,7 @@ body::before,.top{background:var(--blue)}
       <p class="subtitle">{{hero.subtitle}} <span>{{hero.subtitle_accent}}</span></p>
       <p class="lead">{{hero.lead}}</p>
       <div class="hero-cta">
-        <a class="btn btn-main btn-trial btn-2line" href="{{site.app_url}}" rel="noopener"><span>{{hero.cta}}</span><small>{{hero.promise}}</small></a>
+        <a class="btn btn-main btn-trial btn-2line" href="{{site.app_url}}?signup" rel="noopener"><span>{{hero.cta}}</span><small>{{hero.promise}}</small></a>
         <a class="link-light" href="#tour">{{hero.cta_secondary}}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
         </a>
@@ -558,7 +558,7 @@ body::before,.top{background:var(--blue)}
 {{#each pricing.items}}        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.2l2.7 2.7L16 9.6"/></svg><span>{{this}}</span></li>
 {{/each}}      </ul>
       <p class="promise">{{hero.promise}}</p>
-      <a class="btn btn-main btn-trial deal-btn" href="{{site.app_url}}" rel="noopener">{{pricing.button}}</a>
+      <a class="btn btn-main btn-trial deal-btn" href="{{site.app_url}}?signup" rel="noopener">{{pricing.button}}</a>
       <p class="deal-small">{{pricing.fine}}</p>
     </div>
     <div class="join" id="join">
