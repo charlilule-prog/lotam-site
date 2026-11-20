@@ -667,5 +667,12 @@ body::before,.top{background:var(--blue)}
   dlg.addEventListener('close',function(){if(last)last.focus();});
 })();
 </script>
+<script>
+/* where the visitor came from (google, bing, chatgpt, direct…): one word, kept for this visit only, added to the trial link so the app knows the channel */
+(function(){try{var k="lotam-src",s=sessionStorage.getItem(k);if(!s){var q=new URLSearchParams(location.search).get("utm_source"),h="";try{h=document.referrer?new URL(document.referrer).hostname.replace(/^www\./,""):""}catch(e){}if(/(^|\.)lotam\.co\.il$/.test(h))h="";
+s=q||(!h?"direct":/(^|\.)google\./.test(h)?"google":/(^|\.)bing\.com$/.test(h)?"bing":/(chatgpt\.com|openai\.com)$/.test(h)?"chatgpt":/perplexity\.ai$/.test(h)?"perplexity":/(facebook\.com|fb\.com|instagram\.com)$/.test(h)?"facebook":/whatsapp\.com$/.test(h)?"whatsapp":/(t\.me|telegram\.org)$/.test(h)?"telegram":h);
+s=String(s).toLowerCase().replace(/[^a-z0-9.\-]/g,"").slice(0,30)||"direct";sessionStorage.setItem(k,s)}
+document.querySelectorAll('a[href*="?signup"]').forEach(function(a){var u=new URL(a.href);u.searchParams.set("src",s);a.href=u.toString()})}catch(e){}})();
+</script>
 </body>
 </html>
