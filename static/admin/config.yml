@@ -31,6 +31,7 @@ collections:
           - { name: alt_names, label: "שמות נוספים למוצר (לגוגל)", widget: list, field: { name: name, label: "שם", widget: string } }
           - { name: app_url, label: "קישור לאפליקציה (כפתור בקשת גישה וכניסה)", widget: string }
           - { name: whatsapp, label: "מספר וואטסאפ של התמיכה", widget: string, hint: "בפורמט בינלאומי בלי + ובלי רווחים, למשל 972501234567", pattern: ["^[0-9]{10,14}$", "ספרות בלבד, בפורמט בינלאומי"] }
+          - { name: email, label: "מייל לפניות", widget: string, pattern: ["^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$", "כתובת מייל תקינה"] }
           - { name: offer_price, label: "מחיר חודשי בשקלים (לנתונים המובנים של גוגל)", widget: string, pattern: ["^[0-9]+(\\.[0-9]{1,2})?$", "מספר בלבד, למשל 89"] }
           - { name: offer_description, label: "תיאור ההצעה (לגוגל)", widget: string }
           - { name: features, label: "רשימת היכולות (לגוגל ולכלי AI)", widget: list, field: { name: feature, label: "יכולת", widget: string } }

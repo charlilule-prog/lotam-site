@@ -7,7 +7,7 @@
     "Lotam"
   ],
   "app_url": "https://app.lotam.co.il/",
-  "whatsapp": "972533015847",
+  "whatsapp": "972544486633",
   "offer_price": "99",
   "offer_description": "90 ימי ניסיון חינם, ואחר כך 99 ₪ לחודש",
   "features": [
@@ -22,5 +22,6 @@
     "שיבוץ טסט ביומן מהודעת SMS"
   ],
   "google_verification": "",
-  "bing_verification": "616AFFAAB5236DDDE363EC9BE13BC313"
+  "bing_verification": "616AFFAAB5236DDDE363EC9BE13BC313",
+  "email": "lotamapp@gmail.com"
 }

@@ -102,7 +102,7 @@ const verification = (site.indexing ? "" : '<meta name="robots" content="noindex
   + (site.bing_verification ? `<meta name="msvalidate.01" content="${esc(site.bing_verification)}">\n` : "");
 const noRobotsDup = (html) => site.indexing ? html : html.replace('<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">\n', "");
 const org = { "@type": "Organization", "@id": site.url + "#org", name: site.name, alternateName: site.alt_names, url: site.url, logo: site.url + "img/logo.webp",
-  contactPoint: { "@type": "ContactPoint", contactType: "customer support", url: `https://wa.me/${site.whatsapp}`, availableLanguage: "he", areaServed: "IL" } };
+  contactPoint: { "@type": "ContactPoint", contactType: "customer support", url: `https://wa.me/${site.whatsapp}`, ...(site.email ? { email: site.email } : {}), availableLanguage: "he", areaServed: "IL" } };
 const ld = (graph) => JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/<\//g, "<\\/");
 
 /* ---------- home ---------- */
