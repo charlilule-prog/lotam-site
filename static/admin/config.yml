@@ -51,6 +51,7 @@ collections:
               - { name: og_title, label: "כותרת בשיתוף (וואטסאפ, פייסבוק)", widget: string }
               - { name: og_description, label: "תיאור בשיתוף", widget: text }
               - { name: og_image_alt, label: "תיאור תמונת השיתוף", widget: string }
+              - { name: app_description, label: "תיאור האפליקציה לגוגל ולמנועי AI (נתונים מובנים)", widget: text, required: false, hint: "מה לוטם עושה ומה מבדיל אותה. ריק = תיאור העמוד בגוגל." }
           - name: hero
             label: חלון הפתיחה
             widget: object
