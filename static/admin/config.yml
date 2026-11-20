@@ -255,6 +255,14 @@ collections:
           - { name: published, label: "תאריך פרסום", widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
           - { name: updated, label: "תאריך עדכון אחרון", widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, hint: "לעדכן בכל שינוי בתוכן. מוצג בעמוד ונשלח לגוגל." }
           - { name: intro, label: "פסקת פתיחה", widget: text }
+          - name: more
+            label: "התיבה הכחולה: הרבה יותר מיומן"
+            widget: object
+            fields:
+              - { name: lead, label: "כותרת התיבה", widget: string }
+              - { name: text, label: "טקסט", widget: text }
+              - { name: items, label: "שורות עם ✓", widget: list, field: { name: item, label: "שורה", widget: string } }
+              - { name: close, label: "משפט סיום (בצהוב)", widget: text }
           - name: sections
             label: פרקים
             label_singular: פרק
