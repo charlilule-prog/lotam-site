@@ -359,6 +359,14 @@ dialog.viewer::backdrop{background:rgba(0,20,38,.82)}
 .viewer img{max-height:calc(94vh - 72px);width:auto;max-width:100%;aspect-ratio:390/844;border-radius:22px;background:var(--white)}
 .viewer .close{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:10px 20px;border-radius:14px;border:0;background:var(--white);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
 .viewer-cap{color:#dbe6f2;font-size:14px}
+/* ================= method: ready-made curriculum, no binder ================= */
+.method{background:var(--white)}
+.m-cards{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.m-cards li{display:flex;flex-direction:column;gap:4px;padding:18px 16px;border-radius:var(--radius);background:var(--bg);border:1px solid var(--line)}
+.m-cards b{font-family:var(--display);font-weight:800;font-size:clamp(30px, 8vw, 42px);line-height:1.05;color:var(--blue, var(--teal-ink));font-variant-numeric:tabular-nums}
+.m-cards .mt{font-weight:800;font-size:17px;color:var(--ink)}
+.m-cards .mx{color:var(--muted);font-size:15px;line-height:1.45}
+@media (min-width:900px){.m-cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.m-cards li{padding:24px 20px}}
 /* ================= palette: one strong blue, neutrals around it =================
    blue carries the opening, the header and the offer; everything else is white,
    light grey or ink, with blue for small accents and one warm yellow highlight. */
@@ -477,6 +485,19 @@ body::before,.top{background:var(--blue)}
     </div>
   </div>
 </div>
+
+<section class="sec method" id="method" aria-labelledby="method-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">{{method.kicker}}</span>
+      <h2 id="method-title">{{method.title}}</h2>
+      <p>{{method.text}}</p>
+    </div>
+    <ul class="m-cards">
+{{#each method.points}}      <li><b>{{num}}</b><span class="mt">{{title}}</span><span class="mx">{{text}}</span></li>
+{{/each}}    </ul>
+  </div>
+</section>
 
 <section class="sec tour" id="tour" aria-labelledby="tour-title">
   <div class="wrap">

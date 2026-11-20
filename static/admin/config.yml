@@ -86,6 +86,20 @@ collections:
                 fields:
                   - { name: title, label: "תחילת הנקודה, מודגשת", widget: string }
                   - { name: text, label: "המשך הנקודה", widget: string }
+          - name: method
+            label: "מתודיקה מוכנה: בלי קלסר"
+            widget: object
+            fields:
+              - { name: kicker, label: "תגית מעל הכותרת", widget: string }
+              - { name: title, label: "כותרת", widget: string }
+              - { name: text, label: "טקסט", widget: text }
+              - name: points
+                label: "כרטיסים"
+                widget: list
+                fields:
+                  - { name: num, label: "מספר או סימן גדול", widget: string }
+                  - { name: title, label: "כותרת הכרטיס", widget: string }
+                  - { name: text, label: "שורת הסבר", widget: string }
           - name: tour
             label: הסיור במסכים
             widget: object
