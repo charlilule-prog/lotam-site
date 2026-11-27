@@ -126,6 +126,25 @@ collections:
                   - { name: full, label: "המסך המלא (WebP או PNG)", widget: image }
                   - { name: full_title, label: "שם המסך המלא", widget: string }
                   - { name: sr, label: "שם קצר לקוראי מסך", widget: string }
+          - name: vcard
+            label: "כרטיס ביקור דיגיטלי"
+            widget: object
+            fields:
+              - { name: title, label: "כותרת", widget: string }
+              - { name: title_accent, label: "סוף הכותרת (בכחול)", widget: string }
+              - { name: text, label: "טקסט", widget: text }
+              - name: points
+                label: "נקודות"
+                widget: list
+                fields:
+                  - { name: title, label: "מודגש", widget: string }
+                  - { name: text, label: "המשך", widget: string }
+              - { name: phone_image, label: "צילום הכרטיס בטלפון (לאורך)", widget: image }
+              - { name: phone_alt, label: "תיאור הצילום (Alt)", widget: text }
+              - { name: share_image, label: "תמונת השיתוף (1200×630)", widget: image }
+              - { name: share_alt, label: "תיאור תמונת השיתוף (Alt)", widget: text }
+              - { name: share_title, label: "כותרת הקישור בבועת הווטסאפ", widget: string }
+              - { name: share_host, label: "כתובת בבועה", widget: string }
           - name: board
             label: "לוח הציור בטאבלט"
             widget: object
