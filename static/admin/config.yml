@@ -132,6 +132,7 @@ collections:
             fields:
               - { name: title, label: "כותרת", widget: string }
               - { name: title_accent, label: "סוף הכותרת (בכחול)", widget: string }
+              - { name: included, label: "שורה מודגשת (כלול באפליקציה)", widget: string }
               - { name: text, label: "טקסט", widget: text }
               - name: points
                 label: "נקודות"

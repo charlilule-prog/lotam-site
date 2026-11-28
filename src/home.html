@@ -157,6 +157,7 @@ h1.eyebrow{font-family:Heebo, system-ui, sans-serif;line-height:1.4;letter-spaci
 .vcard h2{font-weight:800;font-size:clamp(28px, 6.4vw, 42px);margin-block:8px 14px}
 .vcard h2 span{color:var(--blue)}
 .vcard p{color:var(--muted);font-size:18px;margin:0 0 18px}
+.vcard p.vc-included{display:inline-flex;align-items:center;gap:8px;background:var(--sun-btn);color:var(--ink);font-weight:700;font-size:16px;border-radius:999px;padding:8px 16px;margin:0 0 16px}
 .vc-points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
 .vc-points li{display:flex;gap:10px;align-items:flex-start;font-size:17px;line-height:1.5}
 .vc-points svg{flex:none;margin-top:4px;color:#fff;background:#25D366;border-radius:50%;padding:3px;box-sizing:content-box}
@@ -556,6 +557,7 @@ body::before,.top{background:var(--blue)}
   <div class="wrap">
     <div class="vc-text">
       <h2 id="vcard-title">{{vcard.title}} <span>{{vcard.title_accent}}</span></h2>
+      <p class="vc-included"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>{{vcard.included}}</p>
       <p>{{vcard.text}}</p>
       <ul class="vc-points">
 {{#each vcard.points}}        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>{{title}}</b> {{text}}</span></li>
